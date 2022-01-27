@@ -1,0 +1,13 @@
+.header-elements-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #E5E5E5;
+}
+
+.header-elements-container button {
+  height: 55%;
+  border: none;
+  background-color: #E5E5E5;
+}
