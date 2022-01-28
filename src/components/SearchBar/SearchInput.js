@@ -2,7 +2,11 @@ import React from 'react';
 
 function SearchInput() {
   return (
-    <input />
+    <input
+      data-testid="search-input"
+      type="text"
+      placeholder="Search Recipe"
+    />
   );
 }
 

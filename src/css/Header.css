@@ -1,13 +1,41 @@
-.header-elements-container {
-  align-items: center;
+header {
   background-color: #e5e5e5;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  grid-template-areas:
+    " profile title explore"
+    ". button .";
+  padding: 5px;
 }
 
-.header-elements-container button {
-  background-color: #e5e5e5;
+header img {
+  width: 40px;
+  height: 40px;
+}
+
+.header-profile-link {
+  grid-area: profile;
+  width: 40px;
+  margin: auto;
+}
+
+.header-title {
+  grid-area: title;
+  align-self: center;
+  margin: auto;
+  font-size: 24px;
+}
+
+.header-explore-button {
+  grid-area: explore;
+  align-self: center;
+  width: 42px;
+  margin: auto;
   border: none;
-  height: 55%;
+  background-color: #e5e5e5;
+}
+
+button {
+  grid-area: button;
 }
