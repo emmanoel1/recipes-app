@@ -5,10 +5,15 @@
   box-shadow: 1px 1px 1px #e5e5e5;
   display: flex;
   flex-flow: column wrap;
-  margin: 20px auto;
+  margin: 20px auto 20px auto;
 }
 
 .ingredient-item-element {
   padding: 5px;
   margin-left: 2px;
-};
+}
+
+.ingredients-header {
+  font-size: 28px;
+  margin-left: 5px;
+}

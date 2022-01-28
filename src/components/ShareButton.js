@@ -1,8 +1,8 @@
 import React from 'react';
 
-import shareIcon from '../../images/shareIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
-import '../../css/ShareButton.css';
+import '../css/ShareButton.css';
 
 function ShareButton() {
   return (

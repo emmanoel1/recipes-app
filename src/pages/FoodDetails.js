@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import { getFoodRecipes } from '../services';
 
-import FoodPicture from '../components/FoodDetails/FoodPicture';
-import FoodTitle from '../components/FoodDetails/FoodTitle';
-import ShareButton from '../components/FoodDetails/ShareButton';
-import FavoriteButton from '../components/FoodDetails/FavoriteButton';
-import FoodCategory from '../components/FoodDetails/FoodCategory';
-import FoodIngredients from '../components/FoodDetails/FoodIngredients';
+import RecipePicture from '../components/RecipePicture';
+import RecipeTitle from '../components/RecipeTitle';
+import ShareButton from '../components/ShareButton';
+import FavoriteButton from '../components/FavoriteButton';
+import RecipeCategory from '../components/RecipeCategory';
+import RecipeIngredients from '../components/RecipeIngredients';
+import RecipeInstructions from '../components/RecipeInstructions';
+import FoodVideo from '../components/FoodDetails/FoodVideo';
 
 import '../css/FoodDetails.css';
 
@@ -59,10 +61,10 @@ function FoodDetails() {
 
   return (
     <div>
-      <FoodPicture foodImgUrl={ recipe.strMealThumb } />
+      <RecipePicture recipeImgUrl={ recipe.strMealThumb } />
       <div className="food-details-header-container">
         <div className="food-title-container">
-          <FoodTitle foodTitle={ recipe.strMeal } />
+          <RecipeTitle recipeTitle={ recipe.strMeal } />
         </div>
         <div className="share-icon-container">
           <ShareButton />
@@ -71,11 +73,17 @@ function FoodDetails() {
           <FavoriteButton />
         </div>
         <div className="food-category-container">
-          <FoodCategory foodCategory={ recipe.strCategory } />
+          <RecipeCategory recipeCategory={ recipe.strCategory } />
         </div>
       </div>
       <div className="food-ingredients-container">
-        <FoodIngredients ingredients={ ingredients } quantities={ quantities } />
+        <RecipeIngredients ingredients={ ingredients } quantities={ quantities } />
+      </div>
+      <div className="food-instructions-container">
+        <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
+      </div>
+      <div className="food-video-container">
+        <FoodVideo foodVideo={ recipe.strYoutube } />
       </div>
     </div>
   );

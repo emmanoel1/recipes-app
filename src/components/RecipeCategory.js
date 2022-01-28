@@ -2,9 +2,9 @@ import React from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import '../../css/FoodCategory.css';
+import '../css/RecipeCategory.css';
 
-function FoodCategory({ foodCategory }) {
+function RecipeCategory({ recipeCategory }) {
   return (
     <div
       className="food-category-container"
@@ -12,14 +12,14 @@ function FoodCategory({ foodCategory }) {
       <h2
         data-testid="recipe-category"
       >
-        { foodCategory }
+        { recipeCategory }
       </h2>
     </div>
   );
 }
 
-FoodCategory.propTypes = {
-  foodCategory: PropTypes.string.isRequired,
+RecipeCategory.propTypes = {
+  recipeCategory: PropTypes.string.isRequired,
 };
 
-export default FoodCategory;
+export default RecipeCategory;

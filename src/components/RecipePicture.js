@@ -2,16 +2,16 @@ import React from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import '../../css/FoodPicture.css';
+import '../css/RecipePicture.css';
 
-function FoodPicture({ foodImgUrl }) {
+function RecipePicture({ recipeImgUrl }) {
   return (
     <div>
       <div>
         <img
           className="food-picture"
           data-testid="recipe-photo"
-          src={ foodImgUrl }
+          src={ recipeImgUrl }
           alt="food"
         />
       </div>
@@ -19,8 +19,8 @@ function FoodPicture({ foodImgUrl }) {
   );
 }
 
-FoodPicture.propTypes = {
-  foodImgUrl: PropTypes.string.isRequired,
+RecipePicture.propTypes = {
+  recipeImgUrl: PropTypes.string.isRequired,
 };
 
-export default FoodPicture;
+export default RecipePicture;

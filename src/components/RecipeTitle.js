@@ -2,9 +2,9 @@ import React from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import '../../css/FoodTitle.css';
+import '../css/RecipeTitle.css';
 
-function FoodTitle({ foodTitle }) {
+function RecipeTitle({ recipeTitle }) {
   return (
     <div
       className="header-container"
@@ -12,14 +12,14 @@ function FoodTitle({ foodTitle }) {
       <h1
         data-testid="recipe-title"
       >
-        { foodTitle }
+        { recipeTitle }
       </h1>
     </div>
   );
 }
 
-FoodTitle.propTypes = {
-  foodTitle: PropTypes.string.isRequired,
+RecipeTitle.propTypes = {
+  recipeTitle: PropTypes.string.isRequired,
 };
 
-export default FoodTitle;
+export default RecipeTitle;

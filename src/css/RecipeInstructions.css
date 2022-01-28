@@ -1,0 +1,19 @@
+.food-instructions-container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 341px;
+  background-color: #e5e5e5;
+  margin: auto;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #e5e5e5;
+  margin-bottom: 20px;
+}
+
+.food-instructions {
+  padding: 8px;
+}
+
+.food-instructions-header {
+  font-size: 28px;
+  margin-left: 5px;
+}
