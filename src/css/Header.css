@@ -1,8 +1,7 @@
 header {
   background-color: #e5e5e5;
   display: grid;
-  grid-template-areas:
-  " profile title explore";
+  grid-template-areas: 'profile title explore';
   grid-template-columns: 1fr 2fr 1fr;
   padding: 5px;
 }
