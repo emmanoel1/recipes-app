@@ -1,0 +1,37 @@
+header {
+  background-color: #e5e5e5;
+  display: grid;
+  grid-template-areas: 'profile title explore';
+  grid-template-columns: 1fr 2fr 1fr;
+  padding: 5px;
+}
+
+header img {
+  height: 40px;
+  width: 40px;
+}
+
+.header-profile-link {
+  grid-area: profile;
+  justify-self: start;
+  margin-left: 5px;
+  width: 40px;
+}
+
+.header-title {
+  align-self: center;
+  font-size: 24px;
+  grid-area: title;
+  justify-self: center;
+}
+
+.header-explore-button {
+  align-self: center;
+  background-color: #e5e5e5;
+  border: none;
+  grid-area: explore;
+  height: 45px;
+  justify-self: end;
+  margin-right: 5px;
+  width: 45px;
+}

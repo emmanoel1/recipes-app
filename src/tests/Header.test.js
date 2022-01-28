@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import HeaderMainScreen from '../Components/HeaderMainScreen';
+import HeaderMainScreen from '../components/Header';
 // import userEvent from '@testing-library/user-event';
 
 describe('Testa o componente HeaderMainScreen', () => {

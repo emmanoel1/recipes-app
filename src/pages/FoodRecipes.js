@@ -1,12 +1,17 @@
 import React from 'react';
 
+import Header from '../components/Header';
 import Footer from '../components/Footer';
-import HeaderMainScreen from '../components/HeaderMainScreen';
 
 function FoodRecipes() {
   return (
     <div>
-      <HeaderMainScreen />
+      <Header
+        title
+        profile
+        explore
+        pageTitle="Foods"
+      />
       Foods
       <Footer />
     </div>
