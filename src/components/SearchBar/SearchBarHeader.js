@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import handleBtn from './handleBtn';
 
 function SearchBarHeader() {
+  const history = useHistory();
   const [radio, setRadio] = useState('');
   const [input, setInput] = useState('');
 
@@ -62,7 +64,7 @@ function SearchBarHeader() {
           className="button is-primary"
           data-testid="exec-search-btn"
           onClick={ () => {
-            console.log(handleBtn(radio, input));
+            console.log(handleBtn(radio, input, history));
           } }
         >
           Search

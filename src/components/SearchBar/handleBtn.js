@@ -9,9 +9,9 @@ import {
 
 const urlFilter = window.location.pathname.split('/');
 const actualRoute = urlFilter[1];
-console.log(actualRoute);
+console.log('actual route:', actualRoute);
 
-function foodsSearchFunction(radio, input) {
+function FoodsSearchFunction(radio, input, history) {
   if (radio === 'ingredient') {
     const byIngredients = getByIngredients(input);
     return byIngredients;
@@ -19,6 +19,7 @@ function foodsSearchFunction(radio, input) {
 
   if (radio === 'name') {
     const byName = getByName(input);
+    history.push(`/foods/${input}`);
     return byName;
   }
 
@@ -32,7 +33,7 @@ function foodsSearchFunction(radio, input) {
   }
 }
 
-function drinksSearchFunction(radio, input) {
+function DrinksSearchFunction(radio, input, history) {
   if (radio === 'ingredient') {
     const byIngredients = getDrinkByIngredient(input);
     return byIngredients;
@@ -40,6 +41,8 @@ function drinksSearchFunction(radio, input) {
 
   if (radio === 'name') {
     const byName = getDrinkByName(input);
+    console.log(byName);
+    history.push(`/drinks/${input}`);
     return byName;
   }
 
@@ -53,13 +56,13 @@ function drinksSearchFunction(radio, input) {
   }
 }
 
-const handleBtn = (radio, input) => {
+const handleBtn = (radio, input, history) => {
   if (actualRoute === 'foods') {
-    foodsSearchFunction(radio, input);
+    FoodsSearchFunction(radio, input, history);
   }
 
   if (actualRoute === 'drinks') {
-    drinksSearchFunction(radio, input);
+    DrinksSearchFunction(radio, input, history);
   }
 };
 
