@@ -4,7 +4,7 @@ import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 
-import '../css/footer.css';
+import '../css/Footer.css';
 
 const Footer = () => (
   <footer data-testid="footer">
