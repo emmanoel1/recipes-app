@@ -16,13 +16,19 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import NotFound from './pages/NotFound';
 
+import FoodDetails from './pages/FoodDetails';
+
 function App() {
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/foods" component={ FoodRecipes } />
       <Route exact path="/drinks" component={ DrinkRecipes } />
-      {/* <Route exact path="/foods/:id-da-receita" component={ FoodDetails } /> */}
+      <Route
+        exact
+        path="/foods/:foodId"
+        render={ (props) => <FoodDetails { ...props } /> }
+      />
       {/* <Route exact path="/drinks/:id-da-receita" component={ DrinkDetails } /> */}
       {/* <Route exact path="/foods/:id-da-receita/in-progress" component={ FoodProgress } /> */}
       {/* <Route
