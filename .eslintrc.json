@@ -1,7 +1,4 @@
 {
   "root": true,
-  "extends": ["trybe-frontend"],
-  "rules": {
-    "no-alert": "off"
-  }
+  "extends": ["trybe-frontend"]
 }

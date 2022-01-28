@@ -17,20 +17,8 @@ const handleBtn = async (radio, input) => {
   }
 
   if (radio === 'letter' && input.length > 1) {
-    alert('Your search must have only 1 (one) character');
+    global.alert('Your search must have only 1 (one) character');
   }
-
-  /* customAlert("Something happened!");
-
-customConfirm("Are you sure?");
-
-customPrompt("Who are you?");
-
-function foo() {
-    var alert = myCustomLib.customAlert;
-    alert();
-}
-  */
 };
 
 export default handleBtn;
