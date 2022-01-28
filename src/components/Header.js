@@ -1,7 +1,7 @@
 import React from 'react';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import '../css/HeaderMainScreen.css';
+import '../css/Header.css';
 
 function HeaderMainScreen() {
   return (
