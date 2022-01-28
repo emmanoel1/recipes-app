@@ -1,0 +1,15 @@
+.mainRecipesContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 75px;
+  top: 50px;
+  width: 85%;
+}
