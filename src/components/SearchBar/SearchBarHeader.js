@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchInput from './SearchInput';
 
 function SearchBarHeader() {
+  const [radio, setRadio] = useState();
+  console.log(radio);
+
   return (
     <form className="box">
       <div className="field">
         <label className="radio" htmlFor="ingredient">
           <input
+            name="radio"
             id="ingredient"
             type="radio"
             data-testid="ingredient-search-radio"
             value="ingredient"
+            onChange={ ({ target: { value } }) => setRadio(value) }
           />
           Busca Por Ingrediente
         </label>
@@ -18,10 +23,12 @@ function SearchBarHeader() {
       <div className="field">
         <label className="radio" htmlFor="name">
           <input
+            name="radio"
             id="name"
             type="radio"
             data-testid="name-search-radio"
             value="name"
+            onChange={ ({ target: { value } }) => setRadio(value) }
           />
           Busca Por Nome
         </label>
@@ -29,10 +36,12 @@ function SearchBarHeader() {
       <div className="field">
         <label className="radio" htmlFor="letter">
           <input
+            name="radio"
             id="letter"
             type="radio"
             data-testid="first-letter-search-radio"
             value="letter"
+            onChange={ ({ target: { value } }) => setRadio(value) }
           />
           Busca Pela Primeira letra
         </label>
