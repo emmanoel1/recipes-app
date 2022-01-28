@@ -30,3 +30,21 @@ export const getByLetter = (firstLetter) => (
     .then((res) => res.json()
       .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
 );
+
+export const getDrinkByIngredient = (ingredient) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getDrinkByName = (name) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getDrinkByLetter = (firstLetter) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstLetter}`)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
