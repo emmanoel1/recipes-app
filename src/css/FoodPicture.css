@@ -1,5 +1,5 @@
-img {
-  height: 155px;
-  object-fit: cover;
+.food-picture {
+  height: 155px;  
+  object-fit: cover;  
   width: 360px;
 }

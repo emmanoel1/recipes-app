@@ -1,0 +1,35 @@
+.food-details-header-container {
+  display: grid;
+  grid-template-areas:
+    "title share favorite"
+    "category . .";
+  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.food-title-container {
+  align-self: center;
+  grid-area: title;
+  justify-self: start;
+  margin-left: 9px;
+}
+
+.share-icon-container {
+  align-self: center;
+  grid-area: share;
+  justify-self: end;
+}
+
+.favorite-icon-container {
+  align-self: center;
+  grid-area: favorite;
+  justify-self: end;
+  margin-right: 25px;
+}
+
+.food-category-container {
+  align-self: center;
+  grid-area: category;
+  justify-self: start;
+  margin-left: 6px;
+}

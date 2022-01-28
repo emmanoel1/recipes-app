@@ -9,6 +9,8 @@ function FoodPicture({ foodImgUrl }) {
     <div>
       <div>
         <img
+          className="food-picture"
+          data-testid="recipe-photo"
           src={ foodImgUrl }
           alt="food"
         />
