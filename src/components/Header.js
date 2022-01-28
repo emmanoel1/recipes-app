@@ -51,6 +51,7 @@ function Header({ title, profile, explore, pageTitle }) {
               onClick={ toggleSearchInput }
             >
               <img
+                className="header-explore-img"
                 data-testid="search-top-btn"
                 src={ searchIcon }
                 alt="search-button"
