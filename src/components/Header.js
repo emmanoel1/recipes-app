@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import SearchInput from './SearchBar/SearchInput';
+import SearchBar from './SearchBar';
 
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
@@ -63,7 +63,7 @@ function Header({ title, profile, explore, pageTitle }) {
       <div>
         {
           searchInputStatus && (
-            <SearchInput />
+            <SearchBar />
           )
         }
       </div>
