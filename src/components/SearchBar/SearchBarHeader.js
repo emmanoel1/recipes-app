@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import SearchInput from './SearchInput';
+import handleBtn from './handleBtn';
 
 function SearchBarHeader() {
-  const [radio, setRadio] = useState();
-  console.log(radio);
+  const [radio, setRadio] = useState('');
+  const [input, setInput] = useState('');
 
   return (
     <form className="box">
@@ -47,15 +47,27 @@ function SearchBarHeader() {
         </label>
       </div>
       <div className="field">
+        <input
+          className="input is-primary"
+          data-testid="search-input"
+          type="text"
+          placeholder="Search Recipe"
+          value={ input }
+          onChange={ ({ target: { value } }) => setInput(value) }
+        />
+      </div>
+      <div className="field">
         <button
           type="button"
           className="button is-primary"
           data-testid="exec-search-btn"
+          onClick={ () => {
+            console.log(handleBtn(radio, input));
+          } }
         >
           Search
         </button>
       </div>
-      <SearchInput />
     </form>
   );
 }
