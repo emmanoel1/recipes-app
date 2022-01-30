@@ -10,6 +10,7 @@ import RecipeCategory from '../components/RecipeCategory';
 import RecipeIngredients from '../components/RecipeIngredients';
 import RecipeInstructions from '../components/RecipeInstructions';
 import FoodVideo from '../components/FoodDetails/FoodVideo';
+import RecipeRecomendations from '../components/RecipeRecomendations';
 
 import '../css/FoodDetails.css';
 
@@ -84,6 +85,9 @@ function FoodDetails() {
       </div>
       <div className="food-video-container">
         <FoodVideo foodVideo={ recipe.strYoutube } />
+      </div>
+      <div className="recipe-recomendations-container">
+        <RecipeRecomendations recipeRecomendations="recomendationsForFoods" />
       </div>
     </div>
   );
