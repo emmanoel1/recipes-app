@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
+import MainContext from '../../context/main/MainContext';
 import handleBtn from './handleBtn';
 
 function SearchBarHeader() {
   const history = useHistory();
   const [radio, setRadio] = useState('');
   const [input, setInput] = useState('');
+  const { handleSearchApi } = useContext(MainContext);
 
   return (
     <form className="box">
@@ -63,8 +65,9 @@ function SearchBarHeader() {
           type="button"
           className="button is-primary"
           data-testid="exec-search-btn"
-          onClick={ () => {
-            console.log(handleBtn(radio, input, history));
+          onClick={ async () => {
+            const result = await handleBtn(radio, input, history);
+            handleSearchApi(result);
           } }
         >
           Search

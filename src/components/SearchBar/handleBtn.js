@@ -11,21 +11,30 @@ const urlFilter = window.location.pathname.split('/');
 const actualRoute = urlFilter[1];
 console.log('actual route:', actualRoute);
 
-function FoodsSearchFunction(radio, input, history) {
+async function FoodsSearchFunction(radio, input, history) {
   if (radio === 'ingredient') {
-    const byIngredients = getByIngredients(input);
-    return byIngredients;
+    console.log('chamei by ingredients');
+    const result = [];
+    await getByIngredients(input)
+      .then((e) => result.push(e.meals));
+    return result[0];
   }
 
   if (radio === 'name') {
-    const byName = getByName(input);
+    console.log('chamei by name');
+    const byName = [];
+    await getByName(input)
+      .then((e) => byName.push(e.meals));
     history.push(`/foods/${input}`);
-    return byName;
+    return byName[0];
   }
 
   if (radio === 'letter' && input.length === 1) {
-    const byLetter = getByLetter(input);
-    return byLetter;
+    console.log('chamei by letter');
+    const byLetter = [];
+    await getByLetter(input)
+      .then((e) => byLetter.push(e.meals));
+    return byLetter[0];
   }
 
   if (radio === 'letter' && input.length > 1) {
@@ -33,22 +42,27 @@ function FoodsSearchFunction(radio, input, history) {
   }
 }
 
-function DrinksSearchFunction(radio, input, history) {
+async function DrinksSearchFunction(radio, input, history) {
   if (radio === 'ingredient') {
-    const byIngredients = getDrinkByIngredient(input);
-    return byIngredients;
+    const byIngredients = [];
+    await getDrinkByIngredient(input)
+      .then((e) => byIngredients.push(e.drinks));
+    return byIngredients[0];
   }
 
   if (radio === 'name') {
-    const byName = getDrinkByName(input);
-    console.log(byName);
+    const byName = [];
+    await getDrinkByName(input)
+      .then((e) => byName.push(e.drinks));
     history.push(`/drinks/${input}`);
-    return byName;
+    return byName[0];
   }
 
   if (radio === 'letter' && input.length === 1) {
-    const byLetter = getDrinkByLetter(input);
-    return byLetter;
+    const byLetter = [];
+    await getDrinkByLetter(input)
+      .then((e) => byLetter.push(e.drinks));
+    return byLetter[0];
   }
 
   if (radio === 'letter' && input.length > 1) {
@@ -58,11 +72,13 @@ function DrinksSearchFunction(radio, input, history) {
 
 const handleBtn = (radio, input, history) => {
   if (actualRoute === 'foods') {
-    FoodsSearchFunction(radio, input, history);
+    const resultFoods = FoodsSearchFunction(radio, input, history);
+    return resultFoods;
   }
 
   if (actualRoute === 'drinks') {
-    DrinksSearchFunction(radio, input, history);
+    const resultDrinks = DrinksSearchFunction(radio, input, history);
+    return resultDrinks;
   }
 };
 
