@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -7,9 +7,17 @@ import '../css/FavoriteButton.css';
 
 function FavoriteButton() {
   const [heartIcon, setHeartIcon] = useState(false);
+  // const { favoriteRecipes, setFavoriteRecipes } = useContext();
+
+  // const handleFavoriteRecipeStorage = (currState) => {
+  //   if (currState) {
+  //     setFavoriteRecipes([...favoriteRecipes, ])
+  //   }
+  // };
 
   const handleFavoriteRecipe = () => {
     setHeartIcon(!heartIcon);
+    handleFavoriteRecipeStorage(heartIcon);
   };
 
   return (
