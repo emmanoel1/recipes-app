@@ -9,11 +9,9 @@ import {
 
 const urlFilter = window.location.pathname.split('/');
 const actualRoute = urlFilter[1];
-console.log('actual route:', actualRoute);
 
 async function FoodsSearchFunction(radio, input, history) {
   if (radio === 'ingredient') {
-    console.log('chamei by ingredients');
     const result = [];
     await getByIngredients(input)
       .then((e) => result.push(e.meals));
@@ -21,16 +19,17 @@ async function FoodsSearchFunction(radio, input, history) {
   }
 
   if (radio === 'name') {
-    console.log('chamei by name');
     const byName = [];
     await getByName(input)
       .then((e) => byName.push(e.meals));
-    history.push(`/foods/${input}`);
+    const MEAL_ID = byName[0][0].idMeal;
+    if (MEAL_ID !== undefined) {
+      history.push(`/foods/${MEAL_ID}`);
+    }
     return byName[0];
   }
 
   if (radio === 'letter' && input.length === 1) {
-    console.log('chamei by letter');
     const byLetter = [];
     await getByLetter(input)
       .then((e) => byLetter.push(e.meals));
@@ -54,7 +53,10 @@ async function DrinksSearchFunction(radio, input, history) {
     const byName = [];
     await getDrinkByName(input)
       .then((e) => byName.push(e.drinks));
-    history.push(`/drinks/${input}`);
+    const DRINK_ID = byName[0][0].idDrink;
+    if (DRINK_ID !== undefined) {
+      history.push(`/drinks/${DRINK_ID}`);
+    }
     return byName[0];
   }
 
