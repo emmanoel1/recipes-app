@@ -10,65 +10,39 @@ function RecipeRecomendations({ recipeRecomendations }) {
   const getRecomendations = async () => {
     if (recipeRecomendations === 'recomendationsForFoods') {
       const response = await getDrinkRecipes();
-      const recomendedDrinks = response.drinks;
-      console.log(recomendedDrinks);
-      return recomendedDrinks;
+      return response.drinks;
     }
     if (recipeRecomendations === 'recomendationsForDrinks') {
       const response = await getFoodRecipes();
-      const recomendedFoods = response.meals;
-      return recomendedFoods;
+      return response.meals;
     }
+  };
+
+  const handleResponse = (recipes) => {
+    const RECOMENDATIONS = 6;
+    const newRecipes = recipes.filter((recipe, i) => i < RECOMENDATIONS);
+
+    setRecomendations(newRecipes);
   };
 
   useEffect(() => {
     getRecomendations()
-      .then((r) => setRecomendations(r));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      .then((r) => handleResponse(r));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const RECOMENDATIONS_QUANTITY = 2;
-
   const drinksCarousel = (
-    recomendations.map(
-      (recomendation, index) => index < RECOMENDATIONS_QUANTITY && (
-        <div className="carousel-item-container" key={ index }>
-          <img
-            className="carousel-img"
-            src={ recomendation.strDrinkThumb }
-            alt="drinkThumb"
-          />
-          <strong className="drink-alcoholic">{ recomendation.strAlcoholic }</strong>
-          <p className="drink-name">{ recomendation.strDrink }</p>
-        </div>
-      ),
-    )
-  );
-
-  const foodsCarousel = (
-    recomendations.map(
-      (recomendation, index) => index < RECOMENDATIONS_QUANTITY && (
-        <div
-          className="carousel-item-container"
-          key={ index }
-          data-testid={ `${index}-recomendation-card` }
-        >
-          <img
-            className="carousel-img"
-            src={ recomendation.strMealThumb }
-            alt="mealThumb"
-          />
-          <strong className="drink-alcoholic">{ recomendation.strCategory }</strong>
-          <p className="drink-name">{ recomendation.strMeal }</p>
-        </div>
-      ),
-    )
+    recomendations.map((recomendation, i) => (
+      <div className="image-container" key={ i }>
+        <img className="recomendation-img" src={ recomendation.strDrinkThumb } alt="" />
+      </div>
+    ))
   );
 
   return (
     <div>
       <h1 className="recommendations-title">Recommended</h1>
-      <div className="recomendations-carousel">
+      <div className="recomendations-container">
         {
           recipeRecomendations === 'recomendationsForFoods'
             ? drinksCarousel : foodsCarousel

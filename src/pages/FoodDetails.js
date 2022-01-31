@@ -11,6 +11,7 @@ import RecipeIngredients from '../components/RecipeIngredients';
 import RecipeInstructions from '../components/RecipeInstructions';
 import FoodVideo from '../components/FoodDetails/FoodVideo';
 import RecipeRecomendations from '../components/RecipeRecomendations';
+import StartRecipeButton from '../components/StartRecipeButton';
 
 import '../css/FoodDetails.css';
 
@@ -88,6 +89,9 @@ function FoodDetails() {
       </div>
       <div className="recipe-recomendations-container">
         <RecipeRecomendations recipeRecomendations="recomendationsForFoods" />
+      </div>
+      <div>
+        <StartRecipeButton />
       </div>
     </div>
   );

@@ -1,0 +1,15 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.start-recipe-button {
+  border: none;
+  border-radius: 4px;
+  background-color: green;
+  height: 76px;
+  width: 339px;
+  box-shadow: 1px 1px 1px #e5e5e5;
+  position: fixed;
+  bottom: 20px;
+};
