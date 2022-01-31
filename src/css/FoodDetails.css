@@ -1,0 +1,32 @@
+.recipe-details-header-container {
+  display: grid;
+  grid-template: 'title share favorite' 3fr
+    'category . .' 1fr / 3fr 1fr 1fr;
+}
+
+.recipe-title-container {
+  align-self: center;
+  grid-area: title;
+  justify-self: start;
+  margin-left: 9px;
+}
+
+.share-icon-container {
+  align-self: center;
+  grid-area: share;
+  justify-self: end;
+}
+
+.favorite-icon-container {
+  align-self: center;
+  grid-area: favorite;
+  justify-self: end;
+  margin-right: 25px;
+}
+
+.recipe-category-container {
+  align-self: center;
+  grid-area: category;
+  justify-self: start;
+  margin-left: 6px;
+}
