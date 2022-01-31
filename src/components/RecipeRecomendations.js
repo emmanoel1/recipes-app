@@ -33,8 +33,38 @@ function RecipeRecomendations({ recipeRecomendations }) {
 
   const drinksCarousel = (
     recomendations.map((recomendation, i) => (
-      <div className="image-container" key={ i }>
+      <div
+        data-testid={ `${i}-recomendation-card` }
+        className="image-container"
+        key={ i }
+      >
         <img className="recomendation-img" src={ recomendation.strDrinkThumb } alt="" />
+        <p
+          className="recomendation-title"
+          data-testid={ `${i}-recomendation-title` }
+        >
+          { recomendation.strDrink }
+        </p>
+        <p className="recomendation-category">{ recomendation.strAlcoholic }</p>
+      </div>
+    ))
+  );
+
+  const foodsCarousel = (
+    recomendations.map((recomendation, i) => (
+      <div
+        data-testid={ `${i}-recomendation-card` }
+        className="image-container"
+        key={ i }
+      >
+        <img className="recomendation-img" src={ recomendation.strMealThumb } alt="" />
+        <p
+          className="recomendation-title"
+          data-testid={ `${i}-recomendation-title` }
+        >
+          { recomendation.strMeal }
+        </p>
+        <p className="recomendation-category">{ recomendation.strCategory }</p>
       </div>
     ))
   );

@@ -7,20 +7,19 @@ import FavoriteButton from '../components/FavoriteButton';
 import RecipeCategory from '../components/RecipeCategory';
 import RecipeIngredients from '../components/RecipeIngredients';
 import RecipeInstructions from '../components/RecipeInstructions';
-import FoodVideo from '../components/FoodDetails/FoodVideo';
 import RecipeRecomendations from '../components/RecipeRecomendations';
 import StartRecipeButton from '../components/StartRecipeButton';
 
-import { getFoodById } from '../services';
+import { getDrinkById } from '../services';
 
 import '../css/FoodDetails.css';
 
-function FoodDetails() {
+function DrinkDetails() {
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
-    getFoodById()
-      .then((r) => setRecipe(r.meals[0]));
+    getDrinkById()
+      .then((r) => setRecipe(r.drinks[0]));
   }, []);
 
   const [ingredients, setIngredients] = useState([]);
@@ -29,7 +28,7 @@ function FoodDetails() {
     const arrayOfIngredients = [];
     for (let i = 1; i < TOTAL_POSSIBLE_INGREDIENTS; i += 1) {
       const ingredient = recipe[`strIngredient${i}`];
-      if (ingredient !== '' && ingredient !== null) {
+      if (ingredient !== '' && ingredient !== null && ingredient !== undefined) {
         arrayOfIngredients.push(ingredient);
       }
     }
@@ -42,7 +41,7 @@ function FoodDetails() {
     const arrayOfQuantities = [];
     for (let i = 1; i < TOTAL_POSSIBLE_QUANTITIES; i += 1) {
       const quantity = recipe[`strMeasure${i}`];
-      if (quantity !== '' && quantity !== null) {
+      if (quantity !== '' && quantity !== null && quantity !== undefined) {
         arrayOfQuantities.push(quantity);
       }
     }
@@ -57,10 +56,10 @@ function FoodDetails() {
 
   return (
     <div>
-      <RecipePicture recipeImgUrl={ recipe.strMealThumb } />
+      <RecipePicture recipeImgUrl={ recipe.strDrinkThumb } />
       <div className="food-details-header-container">
         <div className="food-title-container">
-          <RecipeTitle recipeTitle={ recipe.strMeal } />
+          <RecipeTitle recipeTitle={ recipe.strDrink } />
         </div>
         <div className="share-icon-container">
           <ShareButton />
@@ -69,7 +68,7 @@ function FoodDetails() {
           <FavoriteButton />
         </div>
         <div className="food-category-container">
-          <RecipeCategory recipeCategory={ recipe.strCategory } />
+          <RecipeCategory recipeCategory={ recipe.strAlcoholic } />
         </div>
       </div>
       <div className="food-ingredients-container">
@@ -78,11 +77,8 @@ function FoodDetails() {
       <div className="food-instructions-container">
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
       </div>
-      <div className="food-video-container">
-        <FoodVideo foodVideo={ recipe.strYoutube } />
-      </div>
       <div className="recipe-recomendations-container">
-        <RecipeRecomendations recipeRecomendations="recomendationsForFoods" />
+        <RecipeRecomendations recipeRecomendations="recomendationsForDrinks" />
       </div>
       <div>
         <StartRecipeButton />
@@ -91,4 +87,4 @@ function FoodDetails() {
   );
 }
 
-export default FoodDetails;
+export default DrinkDetails;

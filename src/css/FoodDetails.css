@@ -4,7 +4,7 @@
     "title share favorite"
     "category . .";
   grid-template-columns: 3fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
 }
 
 .food-title-container {

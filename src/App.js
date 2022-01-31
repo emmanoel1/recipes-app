@@ -17,6 +17,7 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import NotFound from './pages/NotFound';
 
 import FoodDetails from './pages/FoodDetails';
+import DrinkDetails from './pages/DrinkDetails';
 
 function App() {
   return (
@@ -29,7 +30,11 @@ function App() {
         path="/foods/:foodId"
         render={ (props) => <FoodDetails { ...props } /> }
       />
-      {/* <Route exact path="/drinks/:id-da-receita" component={ DrinkDetails } /> */}
+      <Route
+        exact
+        path="/drinks/:drinkId"
+        render={ (props) => <DrinkDetails { ...props } /> }
+      />
       {/* <Route exact path="/foods/:id-da-receita/in-progress" component={ FoodProgress } /> */}
       {/* <Route
         exact
