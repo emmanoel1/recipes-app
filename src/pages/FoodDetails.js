@@ -63,8 +63,8 @@ function FoodDetails() {
   return (
     <div>
       <RecipePicture recipeImgUrl={ recipe.strMealThumb } />
-      <div className="food-details-header-container">
-        <div className="food-title-container">
+      <div className="recipe-details-header-container">
+        <div className="recipe-title-container">
           <RecipeTitle recipeTitle={ recipe.strMeal } />
         </div>
         <div className="share-icon-container">
@@ -73,7 +73,7 @@ function FoodDetails() {
         <div className="favorite-icon-container">
           <FavoriteButton />
         </div>
-        <div className="food-category-container">
+        <div className="recipe-category-container">
           <RecipeCategory recipeCategory={ recipe.strCategory } />
         </div>
       </div>

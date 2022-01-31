@@ -7,11 +7,11 @@ import '../css/RecipeInstructions.css';
 function RecipeInstructions({ recipeInstructions }) {
   return (
     <div>
-      <h1 className="food-instructions-header">Instructions</h1>
+      <h1 className="recipe-instructions-header">Instructions</h1>
       <div
-        className="food-instructions-container"
+        className="recipe-instructions-container"
       >
-        <p data-testid="instructions" className="food-instructions">
+        <p data-testid="instructions" className="recipe-instructions">
           {
             recipeInstructions
           }

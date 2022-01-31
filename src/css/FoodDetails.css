@@ -1,10 +1,10 @@
-.food-details-header-container {
+.recipe-details-header-container {
   display: grid;
   grid-template: 'title share favorite' 3fr
     'category . .' 1fr / 3fr 1fr 1fr;
 }
 
-.food-title-container {
+.recipe-title-container {
   align-self: center;
   grid-area: title;
   justify-self: start;
@@ -24,7 +24,7 @@
   margin-right: 25px;
 }
 
-.food-category-container {
+.recipe-category-container {
   align-self: center;
   grid-area: category;
   justify-self: start;

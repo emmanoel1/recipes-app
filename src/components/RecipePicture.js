@@ -9,10 +9,10 @@ function RecipePicture({ recipeImgUrl }) {
     <div>
       <div>
         <img
-          className="food-picture"
+          className="recipe-picture"
           data-testid="recipe-photo"
           src={ recipeImgUrl }
-          alt="food"
+          alt="recipe"
         />
       </div>
     </div>

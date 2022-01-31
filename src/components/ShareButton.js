@@ -5,6 +5,13 @@ import shareIcon from '../images/shareIcon.svg';
 import '../css/ShareButton.css';
 
 function ShareButton() {
+  const copyToClipboard = () => {
+    const urlToCopy = window.location.href;
+    navigator.clipboard.writeText(urlToCopy);
+    // eslint-disable-next-line no-alert
+    alert('Link copied!');
+  };
+
   return (
     <div
       className="share-button-container"
@@ -13,6 +20,7 @@ function ShareButton() {
         className="share-button"
         type="button"
         data-testid="share-btn"
+        onClick={ copyToClipboard }
       >
         <img
           className="share-button-icon"

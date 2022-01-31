@@ -7,7 +7,7 @@ import '../css/RecipeCategory.css';
 function RecipeCategory({ recipeCategory }) {
   return (
     <div
-      className="food-category-container"
+      className="recipe-category-container"
     >
       <h2
         data-testid="recipe-category"

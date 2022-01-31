@@ -1,4 +1,4 @@
-.food-instructions-container {
+.recipe-instructions-container {
   background-color: #e5e5e5;
   border-radius: 6px;
   box-shadow: 1px 1px 1px #e5e5e5;
@@ -9,11 +9,11 @@
   width: 341px;
 }
 
-.food-instructions {
+.recipe-instructions {
   padding: 8px;
 }
 
-.food-instructions-header {
+.recipe-instructions-header {
   font-size: 28px;
   margin-left: 5px;
 }
