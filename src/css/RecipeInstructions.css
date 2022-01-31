@@ -1,0 +1,19 @@
+.recipe-instructions-container {
+  background-color: #e5e5e5;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #e5e5e5;
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  margin-bottom: 20px;
+  width: 341px;
+}
+
+.recipe-instructions {
+  padding: 8px;
+}
+
+.recipe-instructions-header {
+  font-size: 28px;
+  margin-left: 5px;
+}
