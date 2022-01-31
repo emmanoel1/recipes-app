@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
-import { getDrinkRecipes } from '../services';
+import MainContext from '../context/main/MainContext';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,10 +11,7 @@ import '../css/MainContainerRecipes.css';
 const RECIPES = 12;
 
 function DrinkRecipes() {
-  const [drinks, setDrinks] = useState([]);
-  useEffect(() => {
-    getDrinkRecipes().then((e) => setDrinks(e.drinks));
-  }, []);
+  const { drinks } = useContext(MainContext);
 
   return (
     <div className="mainRecipesContainer">
