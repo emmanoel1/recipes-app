@@ -19,11 +19,12 @@ function FavoriteButton() {
       <button
         className="favorite-button"
         type="button"
-        data-testid="favorite-btn"
         onClick={ handleFavoriteRecipe }
+        src={ heartIcon ? blackHeartIcon : whiteHeartIcon }
       >
         <img
           className="favorite-button-icon"
+          data-testid="favorite-btn"
           src={ heartIcon ? blackHeartIcon : whiteHeartIcon }
           alt="share-button"
         />

@@ -24,7 +24,6 @@ function FoodDetails() {
   useEffect(() => {
     getFoodById(foodId)
       .then((r) => setRecipe(r.meals[0]));
-    console.log(foodId);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
