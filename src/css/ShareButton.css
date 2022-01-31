@@ -1,0 +1,12 @@
+.share-button-container {
+  height: 26px;
+  width: 26px;
+}
+
+.share-button {
+  background-color: white;
+  border: none;
+  height: 26px;
+  padding: 0;
+  width: 26px;
+}
