@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { useParams } from 'react-router-dom';
+
 import RecipePicture from '../components/RecipePicture';
 import RecipeTitle from '../components/RecipeTitle';
 import ShareButton from '../components/ShareButton';
@@ -16,11 +18,14 @@ import { getFoodById } from '../services';
 import '../css/FoodDetails.css';
 
 function FoodDetails() {
+  const { foodId } = useParams();
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
-    getFoodById()
+    getFoodById(foodId)
       .then((r) => setRecipe(r.meals[0]));
+    console.log(foodId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [ingredients, setIngredients] = useState([]);
@@ -85,7 +90,7 @@ function FoodDetails() {
         <RecipeRecomendations recipeRecomendations="recomendationsForFoods" />
       </div>
       <div>
-        <StartRecipeButton />
+        <StartRecipeButton goTo="foodProgress" id={ foodId } />
       </div>
     </div>
   );

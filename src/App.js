@@ -18,6 +18,8 @@ import NotFound from './pages/NotFound';
 
 import FoodDetails from './pages/FoodDetails';
 import DrinkDetails from './pages/DrinkDetails';
+import FoodProgress from './pages/FoodProgress';
+import DrinkProgress from './pages/DrinkProgress';
 
 function App() {
   return (
@@ -35,12 +37,16 @@ function App() {
         path="/drinks/:drinkId"
         render={ (props) => <DrinkDetails { ...props } /> }
       />
-      {/* <Route exact path="/foods/:id-da-receita/in-progress" component={ FoodProgress } /> */}
-      {/* <Route
+      <Route
         exact
-        path="/drinks/:id-da-receita/in-progress"
-        component={ DrinkProgress }
-      /> */}
+        path="/foods/:foodId/in-progress"
+        render={ (props) => <FoodProgress { ...props } /> }
+      />
+      <Route
+        exact
+        path="/drinks/:drinkId/in-progress"
+        render={ (props) => <DrinkProgress { ...props } /> }
+      />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
