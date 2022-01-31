@@ -1,16 +1,16 @@
 .ingredients-container {
-  width: 341px;
   background-color: #e5e5e5;
   border-radius: 6px;
   box-shadow: 1px 1px 1px #e5e5e5;
   display: flex;
   flex-flow: column wrap;
-  margin: 20px auto 20px auto;
+  margin: 20px auto;
+  width: 341px;
 }
 
 .ingredient-item-element {
-  padding: 5px;
   margin-left: 2px;
+  padding: 5px;
 }
 
 .ingredients-header {

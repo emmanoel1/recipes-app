@@ -1,10 +1,7 @@
 .food-details-header-container {
   display: grid;
-  grid-template-areas:
-    "title share favorite"
-    "category . .";
-  grid-template-columns: 3fr 1fr 1fr;
-  grid-template-rows: 3fr 1fr;
+  grid-template: 'title share favorite' 3fr
+    'category . .' 1fr / 3fr 1fr 1fr;
 }
 
 .food-title-container {
