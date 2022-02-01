@@ -24,7 +24,7 @@ function MainProvider({ children }) {
   };
 
   const removeRecipeFromFavorites = (recipe, type) => {
-    if (type === 'meal') {
+    if (type === 'food' || type === 'comida') {
       const newRecipes = favoriteRecipes.filter(
         (r) => r.idMeal !== recipe.idMeal,
       );
@@ -46,7 +46,6 @@ function MainProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-    console.log(favoriteRecipes);
   }, [favoriteRecipes]);
 
   const mainContextObject = {

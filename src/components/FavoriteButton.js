@@ -23,10 +23,10 @@ function FavoriteButton({ currentRecipe, recipeType }) {
     if (recipeType === 'meal') {
       const recipeObject = {
         id: currentRecipe.idMeal,
-        type: 'meal',
+        alcoholicOrNot: '',
+        type: 'food',
         nationality: currentRecipe.strArea || '',
         category: currentRecipe.strCategory || '',
-        alcoholicOrNot: '',
         name: currentRecipe.strMeal,
         image: currentRecipe.strMealThumb,
       };
@@ -41,7 +41,7 @@ function FavoriteButton({ currentRecipe, recipeType }) {
         category: currentRecipe.strCategory || '',
         alcoholicOrNot: currentRecipe.strAlcoholic,
         name: currentRecipe.strDrink,
-        image: currentRecipe.strDribkThumb,
+        image: currentRecipe.strDrinkThumb,
       };
       return recipeObject;
     }
@@ -66,8 +66,6 @@ function FavoriteButton({ currentRecipe, recipeType }) {
     const isAlreadyFavorited = favoriteRecipes.some(
       (r) => r.id === currentRecipe.idDrink || r.id === currentRecipe.idMeal,
     );
-    console.log(currentRecipe);
-    console.log(isAlreadyFavorited);
     if (isAlreadyFavorited) {
       setHeartIcon(true);
     }
