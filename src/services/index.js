@@ -6,6 +6,20 @@ const FOOD_CATEGORIES_URL = 'https://www.themealdb.com/api/json/v1/1/list.php?c=
 const DRINK_CATEGORIES_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 const FOOD_PER_CATEGORY_URL = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
 const DRINK_PER_CATEGORY_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
+const SURPRISE_FOOD = 'https://www.themealdb.com/api/json/v1/1/random.php';
+const SURPRISE_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+
+export const getSurpriseFood = () => (
+  fetch(SURPRISE_FOOD)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getSurpriseDrink = () => (
+  fetch(SURPRISE_DRINK)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
 
 export const getFoodRecipes = () => (
   fetch(FOOD_URL)
