@@ -7,7 +7,7 @@ function SearchBarHeader() {
   const history = useHistory();
   const [radio, setRadio] = useState('');
   const [input, setInput] = useState('');
-  const { handleSearchApi } = useContext(MainContext);
+  const { handleSearchApi, updateBySameName } = useContext(MainContext);
 
   return (
     <form className="box">
@@ -66,7 +66,7 @@ function SearchBarHeader() {
           className="button is-primary"
           data-testid="exec-search-btn"
           onClick={ async () => {
-            const result = await handleBtn(radio, input, history);
+            const result = await handleBtn(radio, input, history, updateBySameName);
             handleSearchApi(result);
           } }
         >

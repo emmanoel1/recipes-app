@@ -19,8 +19,26 @@ function MainProvider({ children }) {
     setSearchResult(result);
   };
 
+  const updateBySameName = (result) => {
+    if (result === null) {
+      global.alert(
+        'Sorry, we haven\'t found any recipes for these filters.',
+      );
+    }
+    if (result !== null) {
+      if (result[0].idMeal) {
+        setMeals(result);
+      }
+      if (result[0].idDrink) {
+        setDrinks(result);
+      }
+    }
+  };
+
   return (
-    <MainContext.Provider value={ { meals, drinks, handleSearchApi, searchResult } }>
+    <MainContext.Provider
+      value={ { meals, drinks, handleSearchApi, searchResult, updateBySameName } }
+    >
       {children}
     </MainContext.Provider>
   );
