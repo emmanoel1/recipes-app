@@ -1,14 +1,14 @@
 import React from 'react';
 import LoginForm from '../../components/LoginForm';
-import { Welcome, CodeAndCooking, MainLogin } from '../../styles';
+import { Welcome, CodeAndCooking } from '../../styles';
 
 function Login() {
   return (
-    <MainLogin>
+    <div>
       <Welcome>Bem vindo ao</Welcome>
       <CodeAndCooking>Code And Cooking</CodeAndCooking>
       <LoginForm />
-    </MainLogin>
+    </div>
   );
 }
 
