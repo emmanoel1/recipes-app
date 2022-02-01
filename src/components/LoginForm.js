@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form } from '../styles';
 
 function LoginForm() {
   const [userEmail, setUserEmail] = useState('');
@@ -36,7 +35,7 @@ function LoginForm() {
   };
 
   return (
-    <Form>
+    <form>
       <input
         name="email"
         type="email"
@@ -61,7 +60,7 @@ function LoginForm() {
       >
         Login
       </button>
-    </Form>
+    </form>
   );
 }
 

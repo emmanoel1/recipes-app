@@ -1,0 +1,16 @@
+.food-video-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.food-video {
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #e5e5e5;
+}
+
+.video-header {
+  font-size: 28px;
+  margin-left: -15px;
+}
