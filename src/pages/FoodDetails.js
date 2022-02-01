@@ -70,7 +70,7 @@ function FoodDetails() {
           <ShareButton />
         </div>
         <div className="favorite-icon-container">
-          <FavoriteButton />
+          <FavoriteButton currentRecipe={ recipe } recipeType="meal" />
         </div>
         <div className="recipe-category-container">
           <RecipeCategory recipeCategory={ recipe.strCategory } />
