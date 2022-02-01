@@ -10,6 +10,7 @@ function MainProvider({ children }) {
   const [drinks, setDrinks] = useState([]);
   const [foodCategories, setFoodCategories] = useState([]);
   const [drinkCategories, setDrinkCategories] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     API.getFoodRecipes().then((e) => setMeals(e.meals));
@@ -18,8 +19,38 @@ function MainProvider({ children }) {
     API.getDrinkCategories().then((e) => setDrinkCategories(e.drinks));
   }, []);
 
+  const handleSearchApi = (result) => {
+    setSearchResult(result);
+  };
+
+  const updateBySameName = (result) => {
+    if (result === null) {
+      global.alert(
+        'Sorry, we haven\'t found any recipes for these filters.',
+      );
+    }
+    if (result !== null) {
+      if (result[0].idMeal) {
+        setMeals(result);
+      }
+      if (result[0].idDrink) {
+        setDrinks(result);
+      }
+    }
+  };
+
+  const mainContextObject = {
+    meals,
+    drinks,
+    foodCategories,
+    drinkCategories,
+    searchResult,
+    handleSearchApi,
+    updateBySameName,
+  };
+
   return (
-    <MainContext.Provider value={ { meals, drinks, foodCategories, drinkCategories } }>
+    <MainContext.Provider value={ mainContextObject }>
       {children}
     </MainContext.Provider>
   );

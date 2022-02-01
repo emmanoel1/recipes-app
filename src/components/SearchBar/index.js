@@ -1,12 +1,11 @@
 import React from 'react';
 import SearchBarHeader from './SearchBarHeader';
-import SearchInput from './SearchInput';
+import './searchBar.css';
 
 function SearchBar() {
   return (
-    <div className="box">
+    <div className="box btns">
       <SearchBarHeader />
-      <SearchInput />
     </div>
   );
 }
