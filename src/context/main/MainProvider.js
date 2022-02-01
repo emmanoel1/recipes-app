@@ -11,23 +11,32 @@ function MainProvider({ children }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   const getFavoriteRecipes = () => {
-    const currentFavoriteRecipes = localStorage.getItem('favoriteRecipes');
+    const currentFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (currentFavoriteRecipes === null) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     } else {
-      setFavoriteRecipes(JSON.parse(currentFavoriteRecipes));
+      setFavoriteRecipes(currentFavoriteRecipes);
     }
   };
 
-  //   [{
-  //     id: id-da-receita,
-  //     type: comida-ou-bebida,
-  //     nationality: nacionalidade-da-receita-ou-texto-vazio,
-  //     category: categoria-da-receita-ou-texto-vazio,
-  //     alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
-  //     name: nome-da-receita,
-  //     image: imagem-da-receita
-  //   }]
+  const addRecipeToFavorites = (recipe) => {
+    setFavoriteRecipes([...favoriteRecipes, recipe]);
+  };
+
+  const removeRecipeFromFavorites = (recipe, type) => {
+    if (type === 'meal') {
+      const newRecipes = favoriteRecipes.filter(
+        (r) => r.idMeal !== recipe.idMeal,
+      );
+      setFavoriteRecipes(newRecipes);
+    }
+    if (type === 'drink') {
+      const newRecipes = favoriteRecipes.filter(
+        (r) => r.idDrink !== recipe.idDrink,
+      );
+      setFavoriteRecipes(newRecipes);
+    }
+  };
 
   useEffect(() => {
     API.getFoodRecipes().then((e) => setMeals(e.meals));
@@ -35,11 +44,17 @@ function MainProvider({ children }) {
     getFavoriteRecipes();
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    console.log(favoriteRecipes);
+  }, [favoriteRecipes]);
+
   const mainContextObject = {
     meals,
     drinks,
     favoriteRecipes,
-    setFavoriteRecipes,
+    addRecipeToFavorites,
+    removeRecipeFromFavorites,
   };
 
   return (
