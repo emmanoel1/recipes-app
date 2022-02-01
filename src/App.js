@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
-import Login from './pages/Login';
+import Login from './components/LoginForm';
 import DrinkRecipes from './pages/DrinkRecipes';
 import FoodRecipes from './pages/FoodRecipes';
 import Explore from './pages/Explore';
