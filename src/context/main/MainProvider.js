@@ -45,6 +45,7 @@ function MainProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    // .
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
   }, [favoriteRecipes]);
 
