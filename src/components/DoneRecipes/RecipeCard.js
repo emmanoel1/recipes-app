@@ -2,51 +2,82 @@ import React from 'react';
 
 import { PropTypes } from 'prop-types';
 
-function RecipeCard({ image, category, name, doneDate, tags, index }) {
+import ShareButton from '../ShareButton';
+
+import '../../css/RecipeCard.css';
+
+function RecipeCard({ recipe, index }) {
   return (
-    <div>
+    <div
+      className="recipe-card-container"
+    >
       <img
         data-testid={ `${index}-horizontal-image` }
-        src={ image }
-        alt={ name }
+        src={ recipe.image }
+        alt={ recipe.name }
       />
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        { category }
-      </p>
       <p
         data-testid={ `${index}-horizontal-name` }
       >
-        { name }
+        { recipe.name }
       </p>
+      {
+        recipe.type === 'drink'
+          && (
+            <p>
+              {
+                recipe.alcoholicOrNot
+              }
+            </p>
+          )
+      }
+      {
+        recipe.type === 'food'
+          && (
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              {recipe.category}
+            </p>
+          )
+      }
+      {
+        recipe.type === 'food'
+          && (
+            <p>
+              {
+                recipe.nationality
+              }
+            </p>
+          )
+      }
       <p
         data-testid={ `${index}-horizontal-done-date` }
       >
-        { doneDate }
+        { recipe.doneDate }
       </p>
       {
-        tags.map(
-          (tag, i) => (
-            <p
-              key={ i }
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-            >
-              { tag }
-            </p>
-          ),
-        )
+        recipe.type === 'food'
+          && recipe.tags.map(
+            (tag, i) => (
+              i < 2 && (
+                <p
+                  key={ i }
+                  data-testid={ `${index}-${tag}-horizontal-tag` }
+                >
+                  {tag}
+                </p>
+              )
+            ),
+          )
       }
+      <ShareButton category={ `${recipe.type}s` } id={ recipe.id } />
     </div>
   );
 }
 
 RecipeCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  doneDate: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
+  recipe: PropTypes.objectOf(PropTypes.string).isRequired,
   index: PropTypes.number.isRequired,
 };
 

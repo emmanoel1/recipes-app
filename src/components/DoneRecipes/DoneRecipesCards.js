@@ -1,75 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+import { PropTypes } from 'prop-types';
 
 import RecipeCard from './RecipeCard';
 
-function DoneRecipesCards() {
-  const doneFoods = [
-    {
-      id: '52771',
-      type: 'food',
-      nationality: 'Italian',
-      category: 'Vegetarian',
-      alcoholicOrNot: '',
-      name: 'Spicy Arrabiata Penne',
-      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-      doneDate: '23/06/2020',
-      tags: ['Pasta', 'Curry'],
-    },
-    {
-      id: '178319',
-      type: 'drink',
-      nationality: '',
-      category: 'Cocktail',
-      alcoholicOrNot: 'Alcoholic',
-      name: 'Aquamarine',
-      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-      doneDate: '23/06/2020',
-      tags: [],
-    },
-  ];
+import '../../css/DoneRecipesCards.css';
 
-  const [doneRecipes, setDoneRecipes] = useState([]);
-
-  useEffect(() => {
-    setDoneRecipes(doneFoods);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function DoneRecipesCards({ filteredDoneRecipes }) {
   return (
-    <div>
+    <div
+      className="done-recipes-cards-container"
+    >
       {
-        doneRecipes.map((recipe, index) => (
+        filteredDoneRecipes.map((recipe, index) => (
           <div
             key={ index }
           >
-            {
-              recipe.type === 'food'
-                ? (
-                  <RecipeCard
-                    index={ index }
-                    image={ recipe.image }
-                    category={ recipe.category }
-                    name={ recipe.name }
-                    doneDate={ recipe.doneDate }
-                    tags={ recipe.tags }
-                  />
-                )
-                : (
-                  <RecipeCard
-                    index={ index }
-                    image={ recipe.image }
-                    category={ recipe.category }
-                    name={ recipe.name }
-                    doneDate={ recipe.doneDate }
-                    tags={ recipe.tags }
-                  />
-                )
-            }
+            <RecipeCard
+              recipe={ recipe }
+              index={ index }
+            />
           </div>
         ))
       }
     </div>
   );
 }
+
+DoneRecipesCards.propTypes = {
+  filteredDoneRecipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default DoneRecipesCards;
