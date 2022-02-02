@@ -13,19 +13,24 @@ function MainProvider({ children }) {
   const [searchResult, setSearchResult] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [foodIngredients, setFoodIngredients] = useState([]);
-  const [filteredMeals, setFilter] = useState([]);
+  const [filteredMeals, setFilteredMeals] = useState([]);
+  const [filteredDrinks, setFilteredDrinks] = useState([]);
   const [usedFilter, setUsedFilter] = useState('');
   const [drinkIngredients, setDrinkIngredients] = useState([]);
 
-  const handleClick = (category) => {
-    if (usedFilter === category) {
-      setFilter(meals);
+  const handleClick = (category, type) => {
+    if (usedFilter === category || category === 'all') {
+      if (type === 'food') {
+        setFilteredMeals(meals);
+      } else {
+        setFilteredDrinks(drinks);
+      }
       setUsedFilter('');
-    } else if (category === 'all') {
-      setFilter(meals);
-      setUsedFilter('all');
+    } else if (type === 'food') {
+      API.getFoodPerCategory(category).then((e) => setFilteredMeals(e.meals));
+      setUsedFilter(category);
     } else {
-      API.getFoodPerCategory(category).then((e) => setFilter(e.meals));
+      API.getDrinkPerCategory(category).then((e) => setFilteredDrinks(e.drinks));
       setUsedFilter(category);
     }
   };
@@ -61,9 +66,12 @@ function MainProvider({ children }) {
   useEffect(() => {
     API.getFoodRecipes().then((e) => {
       setMeals(e.meals);
-      setFilter(e.meals);
+      setFilteredMeals(e.meals);
     });
-    API.getDrinkRecipes().then((e) => setDrinks(e.drinks));
+    API.getDrinkRecipes().then((e) => {
+      setDrinks(e.drinks);
+      setFilteredDrinks(e.drinks);
+    });
     API.getFoodCategories().then((e) => setFoodCategories(e.meals));
     API.getDrinkCategories().then((e) => setDrinkCategories(e.drinks));
     API.getFoodIngredientsList().then((e) => setFoodIngredients(e.meals));
@@ -99,6 +107,7 @@ function MainProvider({ children }) {
     meals,
     filteredMeals,
     drinks,
+    filteredDrinks,
     foodIngredients,
     drinkIngredients,
     foodCategories,

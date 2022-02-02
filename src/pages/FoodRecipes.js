@@ -25,6 +25,7 @@ function FoodRecipes() {
         <ShowCategories
           categories={ foodCategories }
           handleClick={ handleClick }
+          type="food"
         />
         {filteredMeals.length > 0 && filteredMeals.map((meal, index) => {
           const { strMealThumb: image, strMeal: name, idMeal: id } = meal;

@@ -6,6 +6,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Card from '../components/CardComponents/Card';
 
+import '../css/MainContainerRecipes.css';
+
 const RECIPES = 12;
 
 function ExploreDrinkIngredients() {

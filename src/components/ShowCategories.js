@@ -3,12 +3,12 @@ import { PropTypes } from 'prop-types';
 
 const MAX_CATEGORIES = 5;
 
-function ShowCategories({ categories, handleClick }) {
+function ShowCategories({ categories, handleClick, type }) {
   return (
     <div>
       <button
         data-testid="All-category-filter"
-        onClick={ () => handleClick('all') }
+        onClick={ () => handleClick('all', type) }
         type="button"
       >
         All
@@ -18,7 +18,7 @@ function ShowCategories({ categories, handleClick }) {
           <button
             data-testid={ `${category.strCategory}-category-filter` }
             key={ index }
-            onClick={ () => handleClick(category.strCategory) }
+            onClick={ () => handleClick(category.strCategory, type) }
             type="button"
           >
             {category.strCategory}
@@ -34,6 +34,7 @@ ShowCategories.propTypes = ({
     PropTypes.shape(),
   ).isRequired,
   handleClick: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 });
 
 export default ShowCategories;
