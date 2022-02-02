@@ -37,7 +37,7 @@ function DoneRecipes() {
 
   useEffect(() => {
     setDoneRecipes(doneFoods);
-    setFilteredDoneRecipes(doneFoods);
+    setFilteredDoneRecipes(doneFoods); // setFilteredDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
