@@ -8,6 +8,39 @@ const FOOD_PER_CATEGORY_URL = 'https://www.themealdb.com/api/json/v1/1/filter.ph
 const DRINK_PER_CATEGORY_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
 const SURPRISE_FOOD = 'https://www.themealdb.com/api/json/v1/1/random.php';
 const SURPRISE_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+const FOOD_INGREDIENTS_LIST_URL = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+const FOOD_BY_INGREDIENTS = (ingredient) => (
+  `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+);
+
+const DRINK_INGREDIENTS_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+const DRINK_BY_INGREDIENTS = (ingredient) => (
+  `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
+);
+
+export const getDrinkIngredientsList = () => (
+  fetch(DRINK_INGREDIENTS_LIST_URL)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getDrinkByIngredients = (ingredient) => (
+  fetch(DRINK_BY_INGREDIENTS(ingredient))
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getFoodByIngredients = (ingredient) => (
+  fetch(FOOD_BY_INGREDIENTS(ingredient))
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getFoodIngredientsList = () => (
+  fetch(FOOD_INGREDIENTS_LIST_URL)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
 
 export const getSurpriseFood = () => (
   fetch(SURPRISE_FOOD)
@@ -71,7 +104,6 @@ export const getDrinkPerCategory = (category) => (
 
 export const getByIngredients = (ingredient) => (
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
-
     .then((res) => res.json()
       .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
 );
