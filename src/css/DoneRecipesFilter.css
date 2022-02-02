@@ -1,0 +1,13 @@
+.done-recipes-filter-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.done-recipes-filter-button {
+  background-color: #e5e5e5;
+  border: none;
+  box-shadow: 1px 1px 1px #e5e5e5;
+  height: 40px;
+  width: 90px;
+}
