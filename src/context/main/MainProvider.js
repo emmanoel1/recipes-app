@@ -12,6 +12,23 @@ function MainProvider({ children }) {
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [foodIngredients, setFoodIngredients] = useState([]);
+  const [filteredMeals, setFilter] = useState([]);
+  const [usedFilter, setUsedFilter] = useState('');
+  const [drinkIngredients, setDrinkIngredients] = useState([]);
+
+  const handleClick = (category) => {
+    if (usedFilter === category) {
+      setFilter(meals);
+      setUsedFilter('');
+    } else if (category === 'all') {
+      setFilter(meals);
+      setUsedFilter('all');
+    } else {
+      API.getFoodPerCategory(category).then((e) => setFilter(e.meals));
+      setUsedFilter(category);
+    }
+  };
 
   const getFavoriteRecipes = () => {
     const currentFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -42,10 +59,15 @@ function MainProvider({ children }) {
   };
 
   useEffect(() => {
-    API.getFoodRecipes().then((e) => setMeals(e.meals));
+    API.getFoodRecipes().then((e) => {
+      setMeals(e.meals);
+      setFilter(e.meals);
+    });
     API.getDrinkRecipes().then((e) => setDrinks(e.drinks));
     API.getFoodCategories().then((e) => setFoodCategories(e.meals));
     API.getDrinkCategories().then((e) => setDrinkCategories(e.drinks));
+    API.getFoodIngredientsList().then((e) => setFoodIngredients(e.meals));
+    API.getDrinkIngredientsList().then((e) => setDrinkIngredients(e.drinks));
     getFavoriteRecipes();
   }, []);
 
@@ -75,7 +97,10 @@ function MainProvider({ children }) {
 
   const mainContextObject = {
     meals,
+    filteredMeals,
     drinks,
+    foodIngredients,
+    drinkIngredients,
     foodCategories,
     drinkCategories,
     searchResult,
@@ -84,6 +109,7 @@ function MainProvider({ children }) {
     updateBySameName,
     addRecipeToFavorites,
     removeRecipeFromFavorites,
+    handleClick,
   };
 
   return (

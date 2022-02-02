@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 const MAX_CATEGORIES = 5;
 
-function FoodCategories({ categories, handleClick }) {
+function ShowCategories({ categories, handleClick }) {
   return (
     <div>
       <button
@@ -29,9 +29,11 @@ function FoodCategories({ categories, handleClick }) {
   );
 }
 
-FoodCategories.propTypes = ({
-  categories: PropTypes.arrayOf().isRequired,
+ShowCategories.propTypes = ({
+  categories: PropTypes.arrayOf(
+    PropTypes.shape(),
+  ).isRequired,
   handleClick: PropTypes.func.isRequired,
 });
 
-export default FoodCategories;
+export default ShowCategories;

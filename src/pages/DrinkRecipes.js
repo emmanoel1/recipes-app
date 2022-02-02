@@ -46,18 +46,21 @@ function DrinkRecipes() {
           categories={ drinkCategories }
           handleClick={ handleClick }
         />
-        {filteredDrinks.length > 0 && filteredDrinks.map((drink, index) => (
-          index < RECIPES && (
-            <Card
-              index={ index }
-              image={ drink.strDrinkThumb }
-              id={ drink.idDrink }
-              key={ drink.idDrink }
-              name={ drink.strDrink }
-              type="drinks"
-            />
-          )
-        ))}
+        {filteredDrinks.length > 0 && filteredDrinks.map((drink, index) => {
+          const { strDrinkThumb: image, strDrink: name, idDrink: id } = drink;
+          return (
+            index < RECIPES && (
+              <Card
+                cardType="recipe"
+                image={ image }
+                index={ index }
+                key={ index }
+                name={ name }
+                path={ `/drinks/${id}` }
+              />
+            )
+          );
+        })}
       </main>
       <Footer />
     </div>
