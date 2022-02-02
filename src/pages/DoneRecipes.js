@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../components/Header';
 import DoneRecipesFilter from '../components/DoneRecipes/DoneRecipesFilters';
@@ -40,6 +40,20 @@ function DoneRecipes() {
     setFilteredDoneRecipes(doneFoods);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const filterDoneRecipes = ({ target: { name } }) => {
+    const filterDoneRecipesObject = {
+      all: () => setFilteredDoneRecipes(doneRecipes),
+      food: () => setFilteredDoneRecipes(
+        doneRecipes.filter((r) => r.type !== 'drink'),
+      ),
+      drink: () => setFilteredDoneRecipes(
+        doneRecipes.filter((r) => r.type !== 'food'),
+      ),
+    };
+
+    return filterDoneRecipesObject[name]();
+  };
 
   return (
     <div>

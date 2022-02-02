@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import ShareButton from '../ShareButton';
+import shareIcon from '../../images/shareIcon.svg';
 
 import '../../css/RecipeCard.css';
+import '../../css/ShareButton.css';
 
 function RecipeCard({ recipe, index }) {
+  const [copy, setCopy] = useState(false);
+
+  const copyToClipboard = (type, id) => {
+    navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
+    // eslint-disable-next-line no-alert
+    setCopy(!copy);
+  };
+
   return (
     <div
       className="recipe-card-container"
     >
-      <img
-        data-testid={ `${index}-horizontal-image` }
-        src={ recipe.image }
-        alt={ recipe.name }
-      />
-      <p
-        data-testid={ `${index}-horizontal-name` }
+      <a
+        href={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }
       >
-        { recipe.name }
-      </p>
+        <img
+          data-testid={ `${index}-horizontal-image` }
+          src={ recipe.image }
+          alt={ recipe.name }
+        />
+      </a>
+      <a
+        href={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }
+      >
+        <p
+          data-testid={ `${index}-horizontal-name` }
+        >
+          { recipe.name }
+        </p>
+      </a>
       {
         recipe.type === 'drink'
           && (
-            <p>
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+            >
               {
                 recipe.alcoholicOrNot
               }
@@ -37,17 +56,7 @@ function RecipeCard({ recipe, index }) {
             <p
               data-testid={ `${index}-horizontal-top-text` }
             >
-              {recipe.category}
-            </p>
-          )
-      }
-      {
-        recipe.type === 'food'
-          && (
-            <p>
-              {
-                recipe.nationality
-              }
+              {`${recipe.nationality} - ${recipe.category}`}
             </p>
           )
       }
@@ -71,7 +80,35 @@ function RecipeCard({ recipe, index }) {
             ),
           )
       }
-      <ShareButton category={ `${recipe.type}s` } id={ recipe.id } />
+      {
+        copy
+          ? (
+            <button
+              className="share-button"
+              onClick={ () => copyToClipboard(recipe.type, recipe.id) }
+              type="button"
+              data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
+            >
+              Link copied!
+            </button>
+          )
+          : (
+            <button
+              className="share-button"
+              type="button"
+              onClick={ () => copyToClipboard(recipe.type, recipe.id) }
+              data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
+            >
+              <img
+                className="share-button-icon"
+                src={ shareIcon }
+                alt="share-button"
+              />
+            </button>
+          )
+      }
     </div>
   );
 }
