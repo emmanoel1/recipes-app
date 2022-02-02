@@ -66,7 +66,7 @@ function DrinkDetails() {
           <RecipeTitle recipeTitle={ recipe.strDrink } />
         </div>
         <div className="share-icon-container">
-          <ShareButton />
+          <ShareButton category="drinks" id={ recipe.idDrink } />
         </div>
         <div className="favorite-icon-container">
           <FavoriteButton currentRecipe={ recipe } recipeType="drink" />
