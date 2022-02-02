@@ -72,10 +72,14 @@ function Header({ title, profile, explore, pageTitle }) {
 }
 
 Header.propTypes = {
-  title: PropTypes.bool.isRequired,
-  profile: PropTypes.bool.isRequired,
-  explore: PropTypes.bool.isRequired,
+  explore: PropTypes.bool,
   pageTitle: PropTypes.string.isRequired,
+  profile: PropTypes.bool.isRequired,
+  title: PropTypes.bool.isRequired,
+};
+
+Header.defaultProps = {
+  explore: false,
 };
 
 export default Header;
