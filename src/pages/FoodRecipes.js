@@ -31,14 +31,14 @@ function FoodRecipes() {
           const { strMealThumb: image, strMeal: name, idMeal: id } = meal;
           return (
             index < RECIPES && (
-              <Card
-                cardType="recipe"
-                image={ image }
-                index={ index }
-                key={ index }
-                name={ name }
-                path={ `/foods/${id}` }
-              />
+              <a key={ index } href={ `/foods/${id}` }>
+                <Card
+                  cardType="recipe"
+                  image={ image }
+                  index={ index }
+                  name={ name }
+                />
+              </a>
             )
           );
         })}

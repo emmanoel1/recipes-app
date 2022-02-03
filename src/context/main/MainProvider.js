@@ -91,10 +91,10 @@ function MainProvider({ children }) {
     }
     if (result !== null) {
       if (result[0].idMeal) {
-        setMeals(result);
+        setFilteredMeals(result);
       }
       if (result[0].idDrink) {
-        setDrinks(result);
+        setFilteredDrinks(result);
       }
     }
   };
@@ -119,6 +119,8 @@ function MainProvider({ children }) {
     addRecipeToFavorites,
     removeRecipeFromFavorites,
     handleClick,
+    setFilteredMeals,
+    setFilteredDrinks,
   };
 
   return (
