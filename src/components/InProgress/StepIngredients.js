@@ -15,27 +15,33 @@ function StepIngredients({ ingredients, quantities }) {
         >
           Ingredients
         </h1>
-        {
-          ingredients.map((ingredient, index) => (
-            <li
-              key={ index }
+        {ingredients.map((ingredient, index) => (
+          <label key={ index } htmlFor={ ingredient }>
+            <input
+              type="checkbox"
+              id={ ingredient }
               className="ingredient-item-element"
               data-testid={ `${index}-ingredient-step` }
-            >
-              {
-                `${ingredient} - ${quantities[index]}`
-              }
-            </li>
-          ))
-        }
+              onChange={ ({ target }) => {
+                const line = {
+                  textDecoration: 'line-through',
+                };
+                target.style = line;
+              } }
+            />
+            {
+              `${ingredient} - ${quantities[index]}`
+            }
+          </label>
+        ))}
       </div>
     </div>
   );
 }
 
 StepIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  quantities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  ingredients: PropTypes.arrayOf(String).isRequired,
+  quantities: PropTypes.arrayOf(String).isRequired,
 };
 
 export default StepIngredients;

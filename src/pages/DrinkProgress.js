@@ -75,7 +75,9 @@ function DrinkProgress() {
         </div>
       </div>
       <div className="food-ingredients-container">
-        <StepIngredients ingredients={ ingredients } quantities={ quantities } />
+        {ingredients.length > 0 ? (
+          <StepIngredients ingredients={ ingredients } quantities={ quantities } />
+        ) : (<>carregando</>)}
       </div>
       <div className="food-instructions-container">
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
