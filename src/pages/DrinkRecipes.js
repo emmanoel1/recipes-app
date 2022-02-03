@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import MainContext from '../context/main/MainContext';
-
-import * as API from '../services';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -13,25 +11,7 @@ import '../css/MainContainerRecipes.css';
 const RECIPES = 12;
 
 function DrinkRecipes() {
-  const { drinks, drinkCategories } = useContext(MainContext);
-
-  const [filteredDrinks, setFilter] = useState([]);
-  const [usedFilter, setUsedFilter] = useState('');
-
-  useEffect(() => { setFilter(drinks); }, [drinks]);
-
-  const handleClick = (category) => {
-    if (usedFilter === category) {
-      setFilter(drinks);
-      setUsedFilter('');
-    } else if (category === 'all') {
-      setFilter(drinks);
-      setUsedFilter('all');
-    } else {
-      API.getDrinkPerCategory(category).then((e) => setFilter(e.drinks));
-      setUsedFilter(category);
-    }
-  };
+  const { drinkCategories, filteredDrinks, handleClick } = useContext(MainContext);
 
   return (
     <div className="mainRecipesContainer">
@@ -45,19 +25,23 @@ function DrinkRecipes() {
         <ShowCategories
           categories={ drinkCategories }
           handleClick={ handleClick }
+          type="drink"
         />
-        {filteredDrinks.length > 0 && filteredDrinks.map((drink, index) => (
-          index < RECIPES && (
-            <Card
-              index={ index }
-              image={ drink.strDrinkThumb }
-              id={ drink.idDrink }
-              key={ drink.idDrink }
-              name={ drink.strDrink }
-              type="drinks"
-            />
-          )
-        ))}
+        {filteredDrinks.length > 0 && filteredDrinks.map((drink, index) => {
+          const { strDrinkThumb: image, strDrink: name, idDrink: id } = drink;
+          return (
+            index < RECIPES && (
+              <Card
+                cardType="recipe"
+                image={ image }
+                index={ index }
+                key={ index }
+                name={ name }
+                path={ `/drinks/${id}` }
+              />
+            )
+          );
+        })}
       </main>
       <Footer />
     </div>
