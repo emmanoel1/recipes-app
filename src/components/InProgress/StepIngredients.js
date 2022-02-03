@@ -16,15 +16,18 @@ function StepIngredients({ ingredients, quantities }) {
           Ingredients
         </h1>
         {ingredients.map((ingredient, index) => (
-          <label key={ index } htmlFor={ ingredient }>
+          <label
+            data-testid={ `${index}-ingredient-step` }
+            key={ index }
+            htmlFor={ ingredient }
+            onChange={ ({ target }) => {
+              target.style.textDecoration = 'none';
+            } }
+          >
             <input
               type="checkbox"
               id={ ingredient }
               className="progress-item-element"
-              data-testid={ `${index}-ingredient-step` }
-              onChange={ ({ target }) => {
-                target.style.textDecoration = 'line-through';
-              } }
             />
             {
               `${ingredient} - ${quantities[index]}`
