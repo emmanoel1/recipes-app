@@ -49,15 +49,16 @@ function MainProvider({ children }) {
   };
 
   const removeRecipeFromFavorites = (recipe, type) => {
+    console.log(recipe);
     if (type === 'food' || type === 'comida') {
       const newRecipes = favoriteRecipes.filter(
-        (r) => r.idMeal !== recipe.idMeal,
+        (r) => Number(r.id) !== Number(recipe.id),
       );
       setFavoriteRecipes(newRecipes);
     }
     if (type === 'drink') {
       const newRecipes = favoriteRecipes.filter(
-        (r) => r.idDrink !== recipe.idDrink,
+        (r) => Number(r.id) !== Number(recipe.id),
       );
       setFavoriteRecipes(newRecipes);
     }
@@ -101,6 +102,7 @@ function MainProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    console.log(favoriteRecipes);
   }, [favoriteRecipes]);
 
   const mainContextObject = {
