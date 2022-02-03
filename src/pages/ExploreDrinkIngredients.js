@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import MainContext from '../context/main/MainContext';
+
+import * as API from '../services';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,8 +13,15 @@ import '../css/MainContainerRecipes.css';
 
 const RECIPES = 12;
 
-function ExploreDrinkIngredients() {
-  const { drinkIngredients } = useContext(MainContext);
+function ExploreDrinkIngredients({ history }) {
+  const { drinkIngredients, setFilteredDrinks } = useContext(MainContext);
+
+  const handleClick = (name) => {
+    API.getDrinkByIngredients(name).then((e) => {
+      setFilteredDrinks(e.drinks);
+      history.push('/drinks');
+    });
+  };
 
   return (
     <div>
@@ -22,19 +32,24 @@ function ExploreDrinkIngredients() {
       />
       <main className="mainContent">
         {drinkIngredients.length > 0 && drinkIngredients.map((ingredient, index) => {
-          const { strIngredient1 } = ingredient;
+          const { strIngredient1: name } = ingredient;
           return (
             index < RECIPES && (
-              <Card
-                cardType="ingredient"
-                image={
-                  `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.pngg`
-                }
-                index={ index }
+              <button
+                className="explore-button"
                 key={ index }
-                name={ strIngredient1 }
-                path="/drinks"
-              />
+                onClick={ () => handleClick(name) }
+                type="button"
+              >
+                <Card
+                  cardType="ingredient"
+                  image={
+                    `https://www.thecocktaildb.com/images/ingredients/${name}-Small.pngg`
+                  }
+                  index={ index }
+                  name={ name }
+                />
+              </button>
             )
           );
         })}
@@ -43,4 +58,9 @@ function ExploreDrinkIngredients() {
     </div>
   );
 }
+
+ExploreDrinkIngredients.propTypes = ({
+  history: PropTypes.shape().isRequired,
+});
+
 export default ExploreDrinkIngredients;
