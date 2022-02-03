@@ -66,21 +66,6 @@ function FavoriteRecipeCard({ recipe, index }) {
         { recipe.doneDate }
       </p>
       {
-        recipe.type === 'food'
-          && recipe.tags.map(
-            (tag, i) => (
-              i < 2 && (
-                <p
-                  key={ i }
-                  data-testid={ `${index}-${tag}-horizontal-tag` }
-                >
-                  {tag}
-                </p>
-              )
-            ),
-          )
-      }
-      {
         copy
           ? (
             <button

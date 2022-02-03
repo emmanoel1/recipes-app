@@ -102,7 +102,6 @@ function MainProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-    console.log(favoriteRecipes);
   }, [favoriteRecipes]);
 
   const mainContextObject = {

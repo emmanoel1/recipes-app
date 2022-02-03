@@ -12,7 +12,6 @@ function FavoriteRecipes() {
     const favoritedRecipesOnLocalStorage = JSON.parse(
       localStorage.getItem('favoriteRecipes'),
     );
-
     console.log(favoritedRecipesOnLocalStorage);
     setFavoritedRecipes(favoritedRecipesOnLocalStorage);
     setFilteredFavoritedRecipes(favoritedRecipesOnLocalStorage);
@@ -46,7 +45,7 @@ function FavoriteRecipes() {
         {
           filteredFavoritedRecipes.length > 0 && (
             <FavoriteRecipesCards
-              filteredDoneRecipes={ filteredFavoritedRecipes }
+              filteredFavoritedRecipes={ filteredFavoritedRecipes }
             />
           )
         }
