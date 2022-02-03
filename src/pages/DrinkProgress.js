@@ -75,15 +75,13 @@ function DrinkProgress() {
         </div>
       </div>
       <div className="food-ingredients-container">
-        {ingredients.length > 0 ? (
-          <StepIngredients ingredients={ ingredients } quantities={ quantities } />
-        ) : (<>carregando</>)}
+        <StepIngredients ingredients={ ingredients } quantities={ quantities } />
       </div>
       <div className="food-instructions-container">
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
       </div>
       <div>
-        <RecipeFinish />
+        <RecipeFinish goTo="drinkProgress" id={ drinkId } />
       </div>
     </div>
   );

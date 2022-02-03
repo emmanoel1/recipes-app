@@ -20,13 +20,10 @@ function StepIngredients({ ingredients, quantities }) {
             <input
               type="checkbox"
               id={ ingredient }
-              className="ingredient-item-element"
+              className="progress-item-element"
               data-testid={ `${index}-ingredient-step` }
               onChange={ ({ target }) => {
-                const line = {
-                  textDecoration: 'line-through',
-                };
-                target.style = line;
+                target.style.textDecoration = 'line-through';
               } }
             />
             {

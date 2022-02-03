@@ -77,7 +77,7 @@ function FoodProgress() {
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
       </div>
       <div>
-        <RecipeFinish />
+        <RecipeFinish goTo="foodProgress" id={ foodId } />
       </div>
     </div>
   );

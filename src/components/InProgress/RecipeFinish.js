@@ -1,9 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import './RecipeFinish.css';
 
-function RecipeFinish() {
-  function handleClick({ target }) {
-    console.log(target);
+function RecipeFinish({ goTo, id }) {
+  const history = useHistory();
+
+  function handleClick() {
+    if (goTo === 'foodProgress') {
+      history.push(`/foods/${id}/done-recipe`);
+    }
+    if (goTo === 'drinkProgress') {
+      history.push(`/drinks/${id}/done-recipe`);
+    }
   }
 
   return (
@@ -19,5 +28,10 @@ function RecipeFinish() {
     </div>
   );
 }
+
+RecipeFinish.propTypes = {
+  goTo: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+};
 
 export default RecipeFinish;
