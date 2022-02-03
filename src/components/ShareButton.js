@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
+import { PropTypes } from 'prop-types';
+
 import shareIcon from '../images/shareIcon.svg';
 
 import '../css/ShareButton.css';
 
-function ShareButton() {
+function ShareButton({ id, category }) {
   const [copy, setCopy] = useState(false);
 
   const copyToClipboard = () => {
-    const urlToCopy = window.location.href;
-    navigator.clipboard.writeText(urlToCopy);
+    navigator.clipboard.writeText(`http://localhost:3000/${category}/${id}`);
     // eslint-disable-next-line no-alert
     setCopy(!copy);
   };
@@ -47,5 +48,10 @@ function ShareButton() {
     </div>
   );
 }
+
+ShareButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+};
 
 export default ShareButton;

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Card({ name, image, index, id, type }) {
+function Card({ name, image, index, path, cardType }) {
   return (
     <a
-      data-testid={ `${index}-recipe-card` }
-      href={ `/${type}/${id}` }
+      data-testid={ `${index}-${cardType}-card` }
+      href={ path }
     >
       <h1 data-testid={ `${index}-card-name` }>{name}</h1>
       <img
@@ -18,11 +18,11 @@ function Card({ name, image, index, id, type }) {
 }
 
 Card.propTypes = ({
-  name: PropTypes.string.isRequired,
+  cardType: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
 });
 
 export default Card;

@@ -12,6 +12,28 @@ function MainProvider({ children }) {
   const [drinkCategories, setDrinkCategories] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [foodIngredients, setFoodIngredients] = useState([]);
+  const [filteredMeals, setFilteredMeals] = useState([]);
+  const [filteredDrinks, setFilteredDrinks] = useState([]);
+  const [usedFilter, setUsedFilter] = useState('');
+  const [drinkIngredients, setDrinkIngredients] = useState([]);
+
+  const handleClick = (category, type) => {
+    if (usedFilter === category || category === 'all') {
+      if (type === 'food') {
+        setFilteredMeals(meals);
+      } else {
+        setFilteredDrinks(drinks);
+      }
+      setUsedFilter('');
+    } else if (type === 'food') {
+      API.getFoodPerCategory(category).then((e) => setFilteredMeals(e.meals));
+      setUsedFilter(category);
+    } else {
+      API.getDrinkPerCategory(category).then((e) => setFilteredDrinks(e.drinks));
+      setUsedFilter(category);
+    }
+  };
 
   const getFavoriteRecipes = () => {
     const currentFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -42,10 +64,18 @@ function MainProvider({ children }) {
   };
 
   useEffect(() => {
-    API.getFoodRecipes().then((e) => setMeals(e.meals));
-    API.getDrinkRecipes().then((e) => setDrinks(e.drinks));
+    API.getFoodRecipes().then((e) => {
+      setMeals(e.meals);
+      setFilteredMeals(e.meals);
+    });
+    API.getDrinkRecipes().then((e) => {
+      setDrinks(e.drinks);
+      setFilteredDrinks(e.drinks);
+    });
     API.getFoodCategories().then((e) => setFoodCategories(e.meals));
     API.getDrinkCategories().then((e) => setDrinkCategories(e.drinks));
+    API.getFoodIngredientsList().then((e) => setFoodIngredients(e.meals));
+    API.getDrinkIngredientsList().then((e) => setDrinkIngredients(e.drinks));
     getFavoriteRecipes();
   }, []);
 
@@ -75,7 +105,11 @@ function MainProvider({ children }) {
 
   const mainContextObject = {
     meals,
+    filteredMeals,
     drinks,
+    filteredDrinks,
+    foodIngredients,
+    drinkIngredients,
     foodCategories,
     drinkCategories,
     searchResult,
@@ -84,6 +118,7 @@ function MainProvider({ children }) {
     updateBySameName,
     addRecipeToFavorites,
     removeRecipeFromFavorites,
+    handleClick,
   };
 
   return (
