@@ -16,6 +16,7 @@
 .progress-item-element {
   margin-left: 2px;
   padding: 5px;
+  text-decoration: none solid rgb(0, 0, 0);
 }
 
 .ingredients-header {
