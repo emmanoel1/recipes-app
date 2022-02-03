@@ -31,14 +31,14 @@ function DrinkRecipes() {
           const { strDrinkThumb: image, strDrink: name, idDrink: id } = drink;
           return (
             index < RECIPES && (
-              <Card
-                cardType="recipe"
-                image={ image }
-                index={ index }
-                key={ index }
-                name={ name }
-                path={ `/drinks/${id}` }
-              />
+              <a key={ index } href={ `/drinks/${id}` }>
+                <Card
+                  cardType="recipe"
+                  image={ image }
+                  index={ index }
+                  name={ name }
+                />
+              </a>
             )
           );
         })}
