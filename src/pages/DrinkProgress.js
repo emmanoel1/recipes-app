@@ -75,7 +75,15 @@ function DrinkProgress() {
         </div>
       </div>
       <div className="food-ingredients-container">
-        <StepIngredients ingredients={ ingredients } quantities={ quantities } />
+        {ingredients !== undefined
+          && ingredients[0] !== undefined
+          && quantities !== undefined
+          && quantities[0] !== undefined ? (
+            <StepIngredients
+              ingredients={ ingredients }
+              quantities={ quantities }
+            />
+          ) : (<div>Loading</div>)}
       </div>
       <div className="food-instructions-container">
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />

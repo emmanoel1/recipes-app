@@ -14,6 +14,8 @@ import RecipeFinish from '../components/InProgress/RecipeFinish';
 function FoodProgress() {
   const { foodId } = useParams();
   const [recipe, setRecipe] = useState({});
+  const [quant, setQuant] = useState();
+  const [ingredients, setIngredient] = useState();
 
   useEffect(() => {
     getFoodById(foodId)
@@ -21,7 +23,6 @@ function FoodProgress() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [ingredients, setIngredients] = useState([]);
   const getIngredients = () => {
     const TOTAL_POSSIBLE_INGREDIENTS = 21;
     const arrayOfIngredients = [];
@@ -31,10 +32,9 @@ function FoodProgress() {
         arrayOfIngredients.push(ingredient);
       }
     }
-    setIngredients(arrayOfIngredients);
+    setIngredient(arrayOfIngredients);
   };
 
-  const [quantities, setQuantities] = useState([]);
   const getQuantities = () => {
     const TOTAL_POSSIBLE_QUANTITIES = 21;
     const arrayOfQuantities = [];
@@ -44,7 +44,7 @@ function FoodProgress() {
         arrayOfQuantities.push(quantity);
       }
     }
-    setQuantities(arrayOfQuantities);
+    setQuant(arrayOfQuantities);
   };
 
   useEffect(() => {
@@ -71,7 +71,15 @@ function FoodProgress() {
         </div>
       </div>
       <div className="food-ingredients-container">
-        <StepIngredients ingredients={ ingredients } quantities={ quantities } />
+        {ingredients !== undefined
+          && ingredients[0] !== undefined
+          && quant !== undefined
+          && quant[0] !== undefined ? (
+            <StepIngredients
+              ingredients={ ingredients }
+              quantities={ quant }
+            />
+          ) : (<div>Loading</div>)}
       </div>
       <div className="food-instructions-container">
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
