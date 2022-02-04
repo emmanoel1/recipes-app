@@ -12,10 +12,25 @@ const FOOD_INGREDIENTS_LIST_URL = 'https://www.themealdb.com/api/json/v1/1/list.
 const FOOD_BY_INGREDIENTS = (ingredient) => (
   `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
 );
-
 const DRINK_INGREDIENTS_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 const DRINK_BY_INGREDIENTS = (ingredient) => (
   `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
+);
+const FOOD_NATIONALITIES_LIST_URL = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+const FOOD_BY_NATIONALITIES = (nationality) => (
+  `https://www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}`
+);
+
+export const getFoodNationalitiesList = () => (
+  fetch(FOOD_NATIONALITIES_LIST_URL)
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
+);
+
+export const getFoodByNationalities = (nationality) => (
+  fetch(FOOD_BY_NATIONALITIES(nationality))
+    .then((res) => res.json()
+      .then((json) => (res.ok ? Promise.resolve(json) : Promise.reject(json))))
 );
 
 export const getDrinkIngredientsList = () => (
