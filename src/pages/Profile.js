@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+import '../css/Profile.css';
+
 export default function Profile() {
   let user = JSON.parse(localStorage.getItem('user'));
   user = user || { email: '' };
@@ -13,7 +15,7 @@ export default function Profile() {
         profile
         pageTitle="Profile"
       />
-      <div>
+      <div className="mainContent">
         <p data-testid="profile-email">{user.email}</p>
         <Link to="/done-recipes">
           <button
