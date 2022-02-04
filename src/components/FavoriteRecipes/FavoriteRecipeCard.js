@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { PropTypes } from 'prop-types';
 
 import shareIcon from '../../images/shareIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+
+import MainContext from '../../context/main/MainContext';
 
 import '../../css/FavoriteRecipeCard.css';
 import '../../css/ShareButton.css';
 
 function FavoriteRecipeCard({ recipe, index }) {
   const [copy, setCopy] = useState(false);
+
+  const { removeRecipeFromFavorites } = useContext(MainContext);
 
   const copyToClipboard = (type, id) => {
     navigator.clipboard.writeText(`http://localhost:3000/${type}s/${id}`);
@@ -94,6 +99,14 @@ function FavoriteRecipeCard({ recipe, index }) {
             </button>
           )
       }
+      <button
+        type="button"
+        onClick={ () => removeRecipeFromFavorites(recipe, recipe.type) }
+        data-testid={ `${index}-horizontal-favorite-btn` }
+        src={ blackHeartIcon }
+      >
+        <img src={ blackHeartIcon } alt="" />
+      </button>
     </div>
   );
 }

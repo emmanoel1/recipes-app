@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import Header from '../components/Header';
 import FavoriteRecipesFilter from '../components/FavoriteRecipes/FavoriteRecipesFilter';
 import FavoriteRecipesCards from '../components/FavoriteRecipes/FavoriteRecipesCards';
+import MainContext from '../context/main/MainContext';
 
 function FavoriteRecipes() {
   const [favoritedRecipes, setFavoritedRecipes] = useState([]);
   const [filteredFavoritedRecipes, setFilteredFavoritedRecipes] = useState([]);
 
+  const { favoriteRecipes } = useContext(MainContext);
+
   useEffect(() => {
-    const favoritedRecipesOnLocalStorage = JSON.parse(
-      localStorage.getItem('favoriteRecipes'),
-    );
-    console.log(favoritedRecipesOnLocalStorage);
-    setFavoritedRecipes(favoritedRecipesOnLocalStorage);
-    setFilteredFavoritedRecipes(favoritedRecipesOnLocalStorage);
-  }, []);
+    setFavoritedRecipes(favoriteRecipes);
+    setFilteredFavoritedRecipes(favoriteRecipes);
+  }, [favoriteRecipes]);
 
   const filterFavoriteRecipes = ({ target: { name } }) => {
     const filterFavoriteRecipesObject = {
@@ -23,7 +22,7 @@ function FavoriteRecipes() {
       food: () => setFilteredFavoritedRecipes(
         favoritedRecipes.filter((r) => r.type !== 'drink'),
       ),
-      drink: () => setFilteredDoneRecipes(
+      drink: () => setFilteredFavoritedRecipes(
         favoritedRecipes.filter((r) => r.type !== 'food'),
       ),
     };

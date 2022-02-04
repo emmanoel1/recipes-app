@@ -49,7 +49,6 @@ function MainProvider({ children }) {
   };
 
   const removeRecipeFromFavorites = (recipe, type) => {
-    console.log(recipe);
     if (type === 'food' || type === 'comida') {
       const newRecipes = favoriteRecipes.filter(
         (r) => Number(r.id) !== Number(recipe.id),
