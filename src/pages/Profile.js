@@ -8,7 +8,11 @@ export default function Profile() {
   user = user || { email: '' };
   return (
     <div>
-      <Header />
+      <Header
+        title
+        profile
+        pageTitle="Profile"
+      />
       <div>
         <p data-testid="profile-email">{user.email}</p>
         <Link to="/done-recipes">
