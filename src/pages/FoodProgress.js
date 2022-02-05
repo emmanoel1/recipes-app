@@ -9,7 +9,7 @@ import RecipePicture from '../components/RecipePicture';
 import RecipeTitle from '../components/RecipeTitle';
 import ShareButton from '../components/ShareButton';
 import StepIngredients from '../components/InProgress/StepIngredients';
-import RecipeFinish from '../components/InProgress/RecipeFinish';
+import RecipeFinishBtn from '../components/InProgress/RecipeFinishBtn';
 
 function FoodProgress() {
   const { foodId } = useParams();
@@ -78,6 +78,7 @@ function FoodProgress() {
             <StepIngredients
               ingredients={ ingredients }
               quantities={ quant }
+              recipe={ recipe }
             />
           ) : (<div>Loading</div>)}
       </div>
@@ -85,7 +86,7 @@ function FoodProgress() {
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
       </div>
       <div>
-        <RecipeFinish goTo="foodProgress" id={ foodId } />
+        <RecipeFinishBtn />
       </div>
     </div>
   );

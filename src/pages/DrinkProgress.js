@@ -13,7 +13,7 @@ import { getDrinkById } from '../services';
 
 import '../css/FoodDetails.css';
 import StepIngredients from '../components/InProgress/StepIngredients';
-import RecipeFinish from '../components/InProgress/RecipeFinish';
+import RecipeFinishBtn from '../components/InProgress/RecipeFinishBtn';
 
 function DrinkProgress() {
   const { drinkId } = useParams();
@@ -82,6 +82,7 @@ function DrinkProgress() {
             <StepIngredients
               ingredients={ ingredients }
               quantities={ quantities }
+              recipe={ recipe }
             />
           ) : (<div>Loading</div>)}
       </div>
@@ -89,7 +90,7 @@ function DrinkProgress() {
         <RecipeInstructions recipeInstructions={ recipe.strInstructions } />
       </div>
       <div>
-        <RecipeFinish goTo="drinkProgress" id={ drinkId } />
+        <RecipeFinishBtn />
       </div>
     </div>
   );

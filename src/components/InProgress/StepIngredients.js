@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { PropTypes } from 'prop-types';
 
 import '../../css/RecipeIngredients.css';
 import { useHistory } from 'react-router-dom';
+import handleProgressResult from './handleProgressResult';
+import handleRenderQuant from './handleRenderQuant';
+import finishRecipe from './finishRecipe';
+import MainContext from '../../context/main/MainContext';
 
-function StepIngredients({ ingredients, quantities }) {
+function StepIngredients({ ingredients, quantities, recipe }) {
   const [checkbox, setCheckbox] = useState();
+  const history = useHistory();
+  const { finishRecipeButton } = useContext(MainContext);
 
   useEffect(() => {
-    const result = JSON.parse(localStorage.getItem('recipeProgress'));
+    const result = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (result !== null) {
       setCheckbox(result);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const results = JSON.parse(localStorage.getItem('recipeProgress'));
-  const history = useHistory();
+  const results = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
   if (!results) {
     const arr = [];
@@ -27,7 +32,7 @@ function StepIngredients({ ingredients, quantities }) {
         bool: false,
       });
     }
-    localStorage.setItem('recipeProgress', JSON.stringify(arr));
+    localStorage.setItem('inProgressRecipes', JSON.stringify(arr));
   }
 
   function handleChange({ target }) {
@@ -37,10 +42,14 @@ function StepIngredients({ ingredients, quantities }) {
       const arr = checkbox;
       arr[index].bool = !checkbox[index].bool;
       setCheckbox(arr);
-      localStorage.setItem('recipeProgress', JSON.stringify(arr));
+      localStorage.setItem('inProgressRecipes', JSON.stringify(arr));
     }
     history.push(`/${urlFilter[1]}/${urlFilter[2]}/${urlFilter[3]}`);
   }
+
+  const final = handleProgressResult(ingredients);
+  finishRecipe(final, recipe);
+  finishRecipeButton(final);
 
   return (
     <div>
@@ -63,7 +72,7 @@ function StepIngredients({ ingredients, quantities }) {
                   checked={ checkbox[index].bool }
                   onChange={ handleChange }
                 />
-                {`${ingredient} - ${quantities[index]}`}
+                {`${ingredient} ${handleRenderQuant(quantities, index)}`}
               </label>
             ))}
           </div>
@@ -75,6 +84,7 @@ function StepIngredients({ ingredients, quantities }) {
 StepIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(String).isRequired,
   quantities: PropTypes.arrayOf(String).isRequired,
+  recipe: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default StepIngredients;
