@@ -47,7 +47,7 @@ function StepIngredients({ ingredients, quantities, recipe }) {
     history.push(`/${urlFilter[1]}/${urlFilter[2]}/${urlFilter[3]}`);
   }
 
-  const final = handleProgressResult(ingredients);
+  const final = handleProgressResult(ingredients, checkbox);
   finishRecipe(final, recipe);
   finishRecipeButton(final);
 

@@ -1,7 +1,6 @@
-const handleProgressResult = (ingredients) => {
-  const result = JSON.parse(localStorage.getItem('inProgressRecipes'));
+const handleProgressResult = (ingredients, result) => {
   const FINISHED_TOTAL = [];
-  if (result !== null) {
+  if (result !== null && result !== undefined) {
     for (let i = 0; i < ingredients.length; i += 1) {
       if (result[i].bool === true) {
         FINISHED_TOTAL.push(result[i].bool);
