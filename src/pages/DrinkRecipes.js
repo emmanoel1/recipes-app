@@ -10,6 +10,12 @@ import '../css/MainContainerRecipes.css';
 
 const RECIPES = 12;
 
+const recipesContentStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+};
+
 function DrinkRecipes() {
   const { drinkCategories, filteredDrinks, handleClick } = useContext(MainContext);
 
@@ -27,21 +33,23 @@ function DrinkRecipes() {
           handleClick={ handleClick }
           type="drink"
         />
-        {filteredDrinks.length > 0 && filteredDrinks.map((drink, index) => {
-          const { strDrinkThumb: image, strDrink: name, idDrink: id } = drink;
-          return (
-            index < RECIPES && (
-              <a key={ index } href={ `/drinks/${id}` }>
-                <Card
-                  cardType="recipe"
-                  image={ image }
-                  index={ index }
-                  name={ name }
-                />
-              </a>
-            )
-          );
-        })}
+        <div style={ recipesContentStyle }>
+          {filteredDrinks.length > 0 && filteredDrinks.map((drink, index) => {
+            const { strDrinkThumb: image, strDrink: name, idDrink: id } = drink;
+            return (
+              index < RECIPES && (
+                <a key={ index } href={ `/drinks/${id}` }>
+                  <Card
+                    cardType="recipe"
+                    image={ image }
+                    index={ index }
+                    name={ name }
+                  />
+                </a>
+              )
+            );
+          })}
+        </div>
       </main>
       <Footer />
     </div>

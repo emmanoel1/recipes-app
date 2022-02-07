@@ -5,6 +5,12 @@ import * as API from '../services';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+const titleStyle = {
+  width: 'fit-content',
+  margin: '10px',
+  justifySelf: 'center',
+};
+
 function ExploreDrinks() {
   const [randomDrink, setRandomDrink] = useState({});
 
@@ -19,13 +25,13 @@ function ExploreDrinks() {
         pageTitle="Explore Drinks"
       />
       <main className="mainContent">
-        <a href="/explore/drinks/ingredients">
-          <h1 data-testid="explore-by-ingredient">
+        <a style={ titleStyle } href="/explore/drinks/ingredients">
+          <h1 className="title" data-testid="explore-by-ingredient">
             By Ingredient
           </h1>
         </a>
-        <a href={ `/drinks/${randomDrink}` }>
-          <h1 data-testid="explore-surprise">
+        <a style={ titleStyle } href={ `/drinks/${randomDrink}` }>
+          <h1 className="title" data-testid="explore-surprise">
             Surprise me!
           </h1>
         </a>

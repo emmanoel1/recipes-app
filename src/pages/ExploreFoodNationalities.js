@@ -10,6 +10,18 @@ import Card from '../components/CardComponents/Card';
 
 const RECIPES = 12;
 
+const mainStyle = {
+  boxSizing: 'border-box',
+  display: 'flex',
+  margin: '0 auto',
+  paddingBottom: '70px',
+  paddingTop: '90px',
+  top: '50px',
+  width: '85%',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+};
+
 function ExploreFoodNacionalities() {
   const { filteredMeals } = useContext(MainContext);
 
@@ -40,32 +52,34 @@ function ExploreFoodNacionalities() {
         explore
         pageTitle="Explore Nationalities"
       />
-      <main className="mainContent">
-        <select
-          data-testid="explore-by-nationality-dropdown"
-          value={ nationality }
-          onChange={ handleChange }
-        >
-          <option
-            data-testid="All-option"
-            selected
-            value="all"
+      <main style={ mainStyle }>
+        <div className="select is-fullwidth">
+          <select
+            data-testid="explore-by-nationality-dropdown"
+            value={ nationality }
+            onChange={ handleChange }
           >
-            All
-          </option>
-          {nationalities.map((e, index) => {
-            const { strArea: name } = e;
-            return (
-              <option
-                data-testid={ `${name}-option` }
-                key={ index }
-                value={ name }
-              >
-                {name}
-              </option>
-            );
-          })}
-        </select>
+            <option
+              data-testid="All-option"
+              selected
+              value="all"
+            >
+              All
+            </option>
+            {nationalities.map((e, index) => {
+              const { strArea: name } = e;
+              return (
+                <option
+                  data-testid={ `${name}-option` }
+                  key={ index }
+                  value={ name }
+                >
+                  {name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
         {meals.length > 0 && meals.map((meal, index) => {
           const { strMealThumb: image, strMeal: name, idMeal: id } = meal;
           return (

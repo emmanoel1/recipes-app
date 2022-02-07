@@ -9,9 +9,28 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Card from '../components/CardComponents/Card';
 
-import '../css/MainContainerRecipes.css';
-
 const RECIPES = 12;
+
+const mainStyle = {
+  boxSizing: 'border-box',
+  display: 'flex',
+  margin: '0 auto',
+  paddingBottom: '70px',
+  paddingTop: '90px',
+  top: '50px',
+  width: '85%',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+};
+
+const buttonStyle = {
+  height: 'fit-content',
+  width: '90%',
+  maxWidth: '300px',
+  maxHeight: '300px',
+  margin: '0 auto',
+  marginTop: '15px',
+};
 
 function ExploreDrinkIngredients({ history }) {
   const { drinkIngredients, setFilteredDrinks } = useContext(MainContext);
@@ -30,16 +49,17 @@ function ExploreDrinkIngredients({ history }) {
         title
         pageTitle="Explore Ingredients"
       />
-      <main className="mainContent">
+      <main style={ mainStyle }>
         {drinkIngredients.length > 0 && drinkIngredients.map((ingredient, index) => {
           const { strIngredient1: name } = ingredient;
           return (
             index < RECIPES && (
               <button
-                className="explore-button"
+                className="button"
                 key={ index }
                 onClick={ () => handleClick(name) }
                 type="button"
+                style={ buttonStyle }
               >
                 <Card
                   cardType="ingredient"

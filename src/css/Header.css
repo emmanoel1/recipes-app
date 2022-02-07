@@ -6,6 +6,7 @@ header {
   padding: 5px;
   position: fixed;
   width: 100%;
+  z-index: 4;
 }
 
 header img {
