@@ -61,10 +61,10 @@ function FoodProgress() {
           <RecipeTitle recipeTitle={ recipe.strMeal } />
         </div>
         <div className="share-icon-container">
-          <ShareButton />
+          <ShareButton category="foods" id={ recipe.idMeal } />
         </div>
         <div className="favorite-icon-container">
-          <FavoriteButton />
+          <FavoriteButton currentRecipe={ recipe } recipeType="meal" />
         </div>
         <div className="recipe-category-container">
           <RecipeCategory recipeCategory={ recipe.strCategory } />
