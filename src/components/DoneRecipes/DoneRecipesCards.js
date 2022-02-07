@@ -12,16 +12,18 @@ function DoneRecipesCards({ filteredDoneRecipes }) {
       className="done-recipes-cards-container"
     >
       {
-        filteredDoneRecipes.map((recipe, index) => (
-          <div
-            key={ index }
-          >
-            <RecipeCard
-              recipe={ recipe }
-              index={ index }
-            />
-          </div>
-        ))
+        filteredDoneRecipes !== null && (
+          filteredDoneRecipes.map((recipe, index) => (
+            <div
+              key={ index }
+            >
+              <RecipeCard
+                recipe={ recipe }
+                index={ index }
+              />
+            </div>
+          ))
+        )
       }
     </div>
   );

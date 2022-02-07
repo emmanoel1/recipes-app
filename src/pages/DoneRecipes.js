@@ -7,13 +7,11 @@ import DoneRecipesCards from '../components/DoneRecipes/DoneRecipesCards';
 import '../css/MainContainerRecipes.css';
 
 function DoneRecipes() {
-  // test
-
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([]);
 
   useEffect(() => {
-    setDoneRecipes(doneFoods);
+    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
     setFilteredDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
