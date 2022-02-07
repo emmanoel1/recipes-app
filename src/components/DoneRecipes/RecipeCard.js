@@ -67,6 +67,7 @@ function RecipeCard({ recipe, index }) {
       </p>
       {
         recipe.type === 'food'
+          && recipe.tags !== ''
           && recipe.tags.map(
             (tag, i) => (
               i < 2 && (

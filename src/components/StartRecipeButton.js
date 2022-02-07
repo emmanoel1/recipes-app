@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
@@ -8,6 +8,25 @@ import '../css/StartRecipeButton.css';
 
 function StartRecipeButton({ goTo, id }) {
   const history = useHistory();
+
+  const [isFinished, setIsFinished] = useState(false);
+  const [inProgress, setInProgress] = useState('');
+
+  useEffect(() => {
+    const progressFoods = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (progressFoods === null) {
+      setInProgress('Start Recipe');
+    } else {
+      setInProgress('Continue Recipe');
+    }
+    const finishedFoods = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (finishedFoods === null) {
+      setIsFinished(false);
+    } else {
+      const foodFinishedStatus = finishedFoods.some((food) => food.id === id);
+      setIsFinished(foodFinishedStatus);
+    }
+  }, [id]);
 
   const handleClick = () => {
     if (goTo === 'foodProgress') {
@@ -20,14 +39,21 @@ function StartRecipeButton({ goTo, id }) {
 
   return (
     <div className="button-container">
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        className="start-recipe-button"
-        onClick={ handleClick }
-      >
-        Start Recipe
-      </button>
+      {
+        isFinished && null
+      }
+      {
+        !isFinished && (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-button"
+            onClick={ handleClick }
+          >
+            {`${inProgress}`}
+          </button>
+        )
+      }
     </div>
   );
 }
