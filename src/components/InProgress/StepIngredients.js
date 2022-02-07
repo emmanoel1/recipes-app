@@ -30,8 +30,6 @@ function StepIngredients({ ingredients, quantities, recipe }) {
       arr.push({
         index: i,
         bool: false,
-        idMeal: recipe.idMeal,
-        idDrink: recipe.idDrink,
       });
     }
     localStorage.setItem('inProgressRecipes', JSON.stringify(arr));

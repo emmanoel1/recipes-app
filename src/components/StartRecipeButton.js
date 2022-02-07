@@ -10,27 +10,14 @@ function StartRecipeButton({ goTo, id }) {
   const history = useHistory();
 
   const [isFinished, setIsFinished] = useState(false);
-  const [isInProgress, setIsInProgress] = useState(false);
 
   useEffect(() => {
     const finishedFoods = JSON.parse(localStorage.getItem('doneRecipes'));
-    const inProgressFoods = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    console.log(inProgressFoods);
-    console.log(finishedFoods);
     if (finishedFoods === null) {
       setIsFinished(false);
     } else {
       const foodFinishedStatus = finishedFoods.some((food) => food.id === id);
       setIsFinished(foodFinishedStatus);
-    }
-
-    if (inProgressFoods === null) {
-      setIsInProgress(false);
-    } else {
-      const foodInProgressStatus = inProgressFoods.some(
-        (food) => food.idMeal === id || food.idDrink === id,
-      );
-      setIsInProgress(foodInProgressStatus);
     }
   }, [id]);
 
@@ -49,19 +36,7 @@ function StartRecipeButton({ goTo, id }) {
         isFinished && null
       }
       {
-        isInProgress && (
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="start-recipe-button"
-            onClick={ handleClick }
-          >
-            Continue Recipe
-          </button>
-        )
-      }
-      {
-        !isFinished && !isInProgress && (
+        !isFinished && (
           <button
             type="button"
             data-testid="start-recipe-btn"
