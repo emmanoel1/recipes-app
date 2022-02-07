@@ -8,6 +8,7 @@ function LoginForm() {
   const history = useHistory();
 
   useEffect(() => {
+    localStorage.removeItem('inProgressRecipes');
     const validateForm = () => {
       const minCaracters = 6;
       if (userEmail.includes('@')

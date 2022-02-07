@@ -17,6 +17,7 @@ function MainProvider({ children }) {
   const [filteredDrinks, setFilteredDrinks] = useState([]);
   const [usedFilter, setUsedFilter] = useState('');
   const [drinkIngredients, setDrinkIngredients] = useState([]);
+  const [finishRecipeBtn, setFinishRecipeBtn] = useState();
 
   const handleClick = (category, type) => {
     if (usedFilter === category || category === 'all') {
@@ -99,6 +100,13 @@ function MainProvider({ children }) {
     }
   };
 
+  const finishRecipeButton = (bool) => {
+    setFinishRecipeBtn(true);
+    if (bool === true) {
+      setFinishRecipeBtn(false);
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
   }, [favoriteRecipes]);
@@ -114,6 +122,7 @@ function MainProvider({ children }) {
     drinkCategories,
     searchResult,
     favoriteRecipes,
+    finishRecipeBtn,
     handleSearchApi,
     updateBySameName,
     addRecipeToFavorites,
@@ -121,6 +130,7 @@ function MainProvider({ children }) {
     handleClick,
     setFilteredMeals,
     setFilteredDrinks,
+    finishRecipeButton,
   };
 
   return (

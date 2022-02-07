@@ -13,6 +13,12 @@
   padding: 5px;
 }
 
+.progress-item-element {
+  margin-left: 2px;
+  padding: 5px;
+  text-decoration: none solid black;
+}
+
 .ingredients-header {
   font-size: 28px;
   margin-left: 5px;
