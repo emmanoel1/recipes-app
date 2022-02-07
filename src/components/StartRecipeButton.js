@@ -10,8 +10,15 @@ function StartRecipeButton({ goTo, id }) {
   const history = useHistory();
 
   const [isFinished, setIsFinished] = useState(false);
+  const [inProgress, setInProgress] = useState('');
 
   useEffect(() => {
+    const progressFoods = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (progressFoods === null) {
+      setInProgress('Start Recipe');
+    } else {
+      setInProgress('Continue Recipe');
+    }
     const finishedFoods = JSON.parse(localStorage.getItem('doneRecipes'));
     if (finishedFoods === null) {
       setIsFinished(false);
@@ -43,7 +50,7 @@ function StartRecipeButton({ goTo, id }) {
             className="start-recipe-button"
             onClick={ handleClick }
           >
-            Start Recipe
+            {`${inProgress}`}
           </button>
         )
       }
