@@ -10,6 +10,12 @@ import '../css/MainContainerRecipes.css';
 
 const RECIPES = 12;
 
+const recipesContentStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+};
+
 function FoodRecipes() {
   const { foodCategories, filteredMeals, handleClick } = useContext(MainContext);
 
@@ -27,21 +33,26 @@ function FoodRecipes() {
           handleClick={ handleClick }
           type="food"
         />
-        {filteredMeals.length > 0 && filteredMeals.map((meal, index) => {
-          const { strMealThumb: image, strMeal: name, idMeal: id } = meal;
-          return (
-            index < RECIPES && (
-              <a key={ index } href={ `/foods/${id}` }>
-                <Card
-                  cardType="recipe"
-                  image={ image }
-                  index={ index }
-                  name={ name }
-                />
-              </a>
-            )
-          );
-        })}
+        <div style={ recipesContentStyle }>
+          {filteredMeals.length > 0 && filteredMeals.map((meal, index) => {
+            const { strMealThumb: image, strMeal: name, idMeal: id } = meal;
+            return (
+              index < RECIPES && (
+                <a
+                  key={ index }
+                  href={ `/foods/${id}` }
+                >
+                  <Card
+                    cardType="recipe"
+                    image={ image }
+                    index={ index }
+                    name={ name }
+                  />
+                </a>
+              )
+            );
+          })}
+        </div>
       </main>
       <Footer />
     </div>

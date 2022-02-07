@@ -3,28 +3,44 @@ import { PropTypes } from 'prop-types';
 
 const MAX_CATEGORIES = 5;
 
+const mainStyle = {
+  maxWidth: '700px',
+  justifyContent: 'center',
+};
+
+const buttonStyle = {
+  maxWidth: '200px',
+  margin: '5px',
+};
+
 function ShowCategories({ categories, handleClick, type }) {
   return (
-    <div>
-      <button
-        data-testid="All-category-filter"
-        onClick={ () => handleClick('all', type) }
-        type="button"
-      >
-        All
-      </button>
-      {categories.map((category, index) => (
-        index < MAX_CATEGORIES && (
-          <button
-            data-testid={ `${category.strCategory}-category-filter` }
-            key={ index }
-            onClick={ () => handleClick(category.strCategory, type) }
-            type="button"
-          >
-            {category.strCategory}
-          </button>
-        )
-      ))}
+    <div className="container">
+      <div className="buttons is-fullwidth" style={ mainStyle }>
+        <button
+          className="button is-dark is-fullwidth"
+          data-testid="All-category-filter"
+          onClick={ () => handleClick('all', type) }
+          type="button"
+          style={ buttonStyle }
+        >
+          All
+        </button>
+        {categories.map((category, index) => (
+          index < MAX_CATEGORIES && (
+            <button
+              className="button is-dark is-fullwidth"
+              data-testid={ `${category.strCategory}-category-filter` }
+              key={ index }
+              onClick={ () => handleClick(category.strCategory, type) }
+              type="button"
+              style={ buttonStyle }
+            >
+              {category.strCategory}
+            </button>
+          )
+        ))}
+      </div>
     </div>
   );
 }
