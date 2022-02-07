@@ -1,18 +1,25 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
+import MainProvider from '../context/main/MainProvider';
 
-const RenderWithRouter = (Component) => {
-  const history = createMemoryHistory();
-  return {
-    ...render(
+const RenderWithRouter = (
+  component,
+  {
+    path = '/',
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] }),
+  } = {},
+) => ({
+  ...render(
+    <MainProvider>
       <Router history={ history }>
-        {Component}
-      </Router>,
-    ),
-    history,
-  };
-};
+        <Route path={ path } render={ () => component } />
+      </Router>
+    </MainProvider>,
+  ),
+  history,
+});
 
 export default RenderWithRouter;
