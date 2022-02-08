@@ -122,4 +122,9 @@ describe('Testa a página FoodRecipes', () => {
     expect(corbaImg).toHaveAttribute('src');
     expect(corbaImg.src).toEqual(corbaImgSrc);
   });
+  it('Cada Card contém um link', async () => {
+    RenderWithRouter(<FoodRecipes />);
+    const corbaLink = (await screen.findByTestId('0-recipe-card')).parentNode;
+    expect(corbaLink).toHaveAttribute('href', '/foods/52977');
+  });
 });
