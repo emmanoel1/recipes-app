@@ -28,8 +28,12 @@ function FoodVideo({ foodVideo }) {
   );
 }
 
+FoodVideo.defaultProps = {
+  foodVideo: '',
+};
+
 FoodVideo.propTypes = {
-  foodVideo: PropTypes.string.isRequired,
+  foodVideo: PropTypes.string,
 };
 
 export default FoodVideo;

@@ -19,8 +19,12 @@ function RecipePicture({ recipeImgUrl }) {
   );
 }
 
+RecipePicture.defaultProps = {
+  recipeImgUrl: '',
+};
+
 RecipePicture.propTypes = {
-  recipeImgUrl: PropTypes.string.isRequired,
+  recipeImgUrl: PropTypes.string,
 };
 
 export default RecipePicture;

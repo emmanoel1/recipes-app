@@ -13,11 +13,6 @@ const drinkCategories = require('../../cypress/mocks/drinkCategories');
 const mealIngredients = require('../../cypress/mocks/mealIngredients');
 const drinkIngredients = require('../../cypress/mocks/drinkIngredients');
 const oneMeal = require('../../cypress/mocks/oneMeal');
-// const beefMeals = require('../../cypress/mocks/beefMeals');
-// const breakfastMeals = require('../../cypress/mocks/breakfastMeals');
-// const chickenMeals = require('../../cypress/mocks/chickenMeals');
-// const dessertMeals = require('../../cypress/mocks/dessertMeals');
-// const goatMeals = require('../../cypress/mocks/goatMeals');
 
 describe('Testa a página FavoriteRecipes', () => {
   const favoriteRecipes = [
@@ -49,17 +44,12 @@ describe('Testa a página FavoriteRecipes', () => {
     API.getFoodIngredientsList.mockResolvedValue(mealIngredients);
     API.getDrinkIngredientsList.mockResolvedValue(drinkIngredients);
     API.getFoodById.mockResolvedValue(oneMeal);
-    // API.getFoodPerCategory.mockResolvedValue();
-    // API.getDrinkPerCategory.mockResolvedValue();
 
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-
-    RenderWithRouter(
-      <FavoriteRecipes />,
-    );
   });
 
   it('A página contém um header', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const pageTitle = await screen.findByRole(
       'heading', { name: 'Favorite Recipes' },
     );
@@ -68,6 +58,7 @@ describe('Testa a página FavoriteRecipes', () => {
     expect(profileBtn).toBeInTheDocument();
   });
   it('A página contém botões de filtro', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const allFilter = await screen.findByTestId('filter-by-all-btn');
     const foodFilter = await screen.findByTestId('filter-by-food-btn');
     const drinkFilter = await screen.findByTestId('filter-by-drink-btn');
@@ -77,6 +68,7 @@ describe('Testa a página FavoriteRecipes', () => {
     expect(drinkFilter).toBeInTheDocument();
   });
   it('Os botões de filtro funcionam corretamente', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const allFilter = await screen.findByTestId('filter-by-all-btn');
     const arrabiata = await screen.findByText('Spicy Arrabiata Penne');
     const aquamarine = await screen.findByText('Aquamarine');
@@ -86,22 +78,27 @@ describe('Testa a página FavoriteRecipes', () => {
     expect(arrabiata).toBeInTheDocument();
   });
   it('Exibe as receitas de comida corretamente', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const arrabiata = await screen.findByText(/arrabiata/i);
     expect(arrabiata).toBeInTheDocument();
   });
   it('Exibe as receitas de bebida corretamente', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const aquamarine = await screen.findByText(/aquamarine/i);
     expect(aquamarine).toBeInTheDocument();
   });
   it('As receitas possuem categorias', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const arrabiata = await screen.findByText(/italian - vegetarian/i);
     expect(arrabiata).toBeInTheDocument();
   });
   it('As receitas possuem um botão de compartilhar', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const arrabiata = await screen.findByTestId(/0-horizontal-share-btn/i);
     expect(arrabiata).toBeInTheDocument();
   });
   it('As receitas possuem um botão de favorito', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
     const arrabiata = await screen.findByTestId(/0-horizontal-favorite-btn/i);
     expect(arrabiata).toBeInTheDocument();
   });

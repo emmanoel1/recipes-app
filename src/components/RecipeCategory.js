@@ -18,8 +18,12 @@ function RecipeCategory({ recipeCategory }) {
   );
 }
 
+RecipeCategory.defaultProps = {
+  recipeCategory: '',
+};
+
 RecipeCategory.propTypes = {
-  recipeCategory: PropTypes.string.isRequired,
+  recipeCategory: PropTypes.string,
 };
 
 export default RecipeCategory;

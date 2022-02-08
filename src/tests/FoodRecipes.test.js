@@ -1,6 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 import FoodRecipes from '../pages/FoodRecipes';
 import RenderWithRouter from '../helpers/RenderWithRouter';
 import * as API from '../services';
@@ -20,12 +21,14 @@ const goatMeals = require('../../cypress/mocks/goatMeals');
 
 describe('Testa a página FoodRecipes', () => {
   beforeEach(() => {
-    API.getFoodRecipes.mockResolvedValue(meals);
-    API.getDrinkRecipes.mockResolvedValue(drinks);
-    API.getFoodCategories.mockResolvedValue(mealCategories);
-    API.getDrinkCategories.mockResolvedValue(drinkCategories);
-    API.getFoodIngredientsList.mockResolvedValue(mealIngredients);
-    API.getDrinkIngredientsList.mockResolvedValue(drinkIngredients);
+    act(() => {
+      API.getFoodRecipes.mockResolvedValue(meals);
+      API.getDrinkRecipes.mockResolvedValue(drinks);
+      API.getFoodCategories.mockResolvedValue(mealCategories);
+      API.getDrinkCategories.mockResolvedValue(drinkCategories);
+      API.getFoodIngredientsList.mockResolvedValue(mealIngredients);
+      API.getDrinkIngredientsList.mockResolvedValue(drinkIngredients);
+    });
   });
 
   it('A página contém um header', async () => {

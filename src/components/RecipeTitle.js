@@ -18,8 +18,12 @@ function RecipeTitle({ recipeTitle }) {
   );
 }
 
+RecipeTitle.defaultProps = {
+  recipeTitle: '',
+};
+
 RecipeTitle.propTypes = {
-  recipeTitle: PropTypes.string.isRequired,
+  recipeTitle: PropTypes.string,
 };
 
 export default RecipeTitle;

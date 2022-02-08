@@ -21,8 +21,12 @@ function RecipeInstructions({ recipeInstructions }) {
   );
 }
 
+RecipeInstructions.defaultProps = {
+  recipeInstructions: '',
+};
+
 RecipeInstructions.propTypes = {
-  recipeInstructions: PropTypes.string.isRequired,
+  recipeInstructions: PropTypes.string,
 };
 
 export default RecipeInstructions;

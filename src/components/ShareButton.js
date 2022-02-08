@@ -49,9 +49,14 @@ function ShareButton({ id, category }) {
   );
 }
 
+ShareButton.defaultProps = {
+  id: '',
+  category: '',
+};
+
 ShareButton.propTypes = {
-  id: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  category: PropTypes.string,
 };
 
 export default ShareButton;
