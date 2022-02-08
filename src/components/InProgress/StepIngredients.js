@@ -84,7 +84,7 @@ function StepIngredients({ ingredients, quantities, recipe }) {
 StepIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(String).isRequired,
   quantities: PropTypes.arrayOf(String).isRequired,
-  recipe: PropTypes.arrayOf(Object).isRequired,
+  recipe: PropTypes.objectOf(String).isRequired,
 };
 
 export default StepIngredients;

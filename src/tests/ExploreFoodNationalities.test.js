@@ -1,6 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import ExploreFoods from '../pages/ExploreFoods';
+import userEvent from '@testing-library/user-event';
+import ExploreFoodNationalities from '../pages/ExploreFoodNationalities';
 import RenderWithRouter from '../helpers/RenderWithRouter';
 import * as API from '../services';
 
@@ -13,8 +14,10 @@ const mealIngredients = require('../../cypress/mocks/mealIngredients');
 const drinkIngredients = require('../../cypress/mocks/drinkIngredients');
 const oneMeal = require('../../cypress/mocks/oneMeal');
 const oneDrink = require('../../cypress/mocks/oneDrink');
+const areas = require('../../cypress/mocks/areas');
+const japanese = require('../../cypress/mocks/japaneseMeals');
 
-describe('Testa a página ExploreFoods', () => {
+describe('Testa a página ExploreFoodNationalities', () => {
   beforeEach(() => {
     API.getFoodRecipes.mockResolvedValue(meals);
     API.getDrinkRecipes.mockResolvedValue(drinks);
@@ -25,19 +28,23 @@ describe('Testa a página ExploreFoods', () => {
     API.getFoodById.mockResolvedValue(oneMeal);
     API.getSurpriseFood.mockResolvedValue(oneMeal);
     API.getSurpriseDrink.mockResolvedValue(oneDrink);
+    API.getFoodNationalitiesList.mockResolvedValue(areas);
+    API.getFoodByNationalities.mockResolvedValue(japanese);
   });
 
   it('A página contém um header', async () => {
-    RenderWithRouter(<ExploreFoods />);
+    RenderWithRouter(<ExploreFoodNationalities />);
     const pageTitle = await screen.findByRole(
-      'heading', { name: 'Explore Foods' },
+      'heading', { name: 'Explore Nationalities' },
     );
     const profileBtn = await screen.findByTestId('profile-top-btn');
+    const exploreBtn = await screen.findByTestId('search-top-btn');
     expect(pageTitle).toBeInTheDocument();
     expect(profileBtn).toBeInTheDocument();
+    expect(exploreBtn).toBeInTheDocument();
   });
   it('A página contém um footer', async () => {
-    RenderWithRouter(<ExploreFoods />);
+    RenderWithRouter(<ExploreFoodNationalities />);
     const drinksBtn = await screen.findByAltText('Go to drinks');
     const exploreBtn = await screen.findByAltText('Go to explore');
     const foodsBtn = await screen.findByAltText('Go to foods');
@@ -46,24 +53,23 @@ describe('Testa a página ExploreFoods', () => {
     expect(exploreBtn).toBeInTheDocument();
     expect(foodsBtn).toBeInTheDocument();
   });
-  it('Existe um link para explorar por ingrediente', async () => {
-    RenderWithRouter(<ExploreFoods />);
-    const exploreByIng = await screen.findByRole('heading', { name: /by ingredient/i });
-    const exploreByNat = await screen.findByRole('heading', { name: /by nationality/i });
-    const surprise = await screen.findByRole('heading', { name: /surprise me/i });
-
-    expect(exploreByIng).toBeInTheDocument();
-    expect(exploreByNat).toBeInTheDocument();
-    expect(surprise).toBeInTheDocument();
+  it('A página contém um dropdown', async () => {
+    RenderWithRouter(<ExploreFoodNationalities />);
+    const dropdown = await screen.findByTestId(/dropdown/i);
+    expect(dropdown).toBeInTheDocument();
   });
-  it('Os links estão referenciando corretamente', async () => {
-    const { findByTestId } = RenderWithRouter(<ExploreFoods />);
-    const ingredientsLink = (await findByTestId('explore-by-ingredient')).parentNode;
-    const nationalityLink = (await findByTestId('explore-by-nationality')).parentNode;
-    const surpriseLink = (await findByTestId('explore-surprise')).parentNode;
-
-    expect(ingredientsLink).toHaveAttribute('href', '/explore/foods/ingredients');
-    expect(nationalityLink).toHaveAttribute('href', '/explore/foods/nationalities');
-    expect(surpriseLink).toHaveAttribute('href', '/foods/52771');
+  it('As opções de prato são exibidas', async () => {
+    RenderWithRouter(<ExploreFoodNationalities />);
+    const recipes = await screen.findAllByTestId(/recipe-card/i);
+    const RECIPES_LENGTH = 12;
+    expect(recipes).toHaveLength(RECIPES_LENGTH);
+    expect((recipes[0]).firstChild).toHaveTextContent(/corba/i);
+  });
+  it('Ao selecionar outro filtro, as receitas mudam', async () => {
+    RenderWithRouter(<ExploreFoodNationalities />);
+    const selector = await screen.findByTestId(/dropdown/i);
+    userEvent.selectOptions(selector, 'Japanese');
+    const recipes = await screen.findAllByTestId(/recipe-card/i);
+    expect((recipes[0]).firstChild).toHaveTextContent(/karaage/i);
   });
 });

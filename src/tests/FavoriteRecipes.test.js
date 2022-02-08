@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import RenderWithRouter from '../helpers/RenderWithRouter';
@@ -70,7 +70,7 @@ describe('Testa a página FavoriteRecipes', () => {
   it('Os botões de filtro funcionam corretamente', async () => {
     RenderWithRouter(<FavoriteRecipes />);
     const allFilter = await screen.findByTestId('filter-by-all-btn');
-    const arrabiata = await screen.findByText('Spicy Arrabiata Penne');
+    const arrabiata = await screen.findByText(/Arrabiata Penne/i);
     const aquamarine = await screen.findByText('Aquamarine');
 
     userEvent.click(allFilter);
@@ -101,5 +101,37 @@ describe('Testa a página FavoriteRecipes', () => {
     RenderWithRouter(<FavoriteRecipes />);
     const arrabiata = await screen.findByTestId(/0-horizontal-favorite-btn/i);
     expect(arrabiata).toBeInTheDocument();
+  });
+  it('O filtro Drinks funciona corretamente', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
+    const drinkBtn = await screen.findByTestId('filter-by-drink-btn');
+    const arrabiata = await screen.findByAltText(/aquamarine/i);
+    userEvent.click(drinkBtn);
+    expect(arrabiata).not.toBeInTheDocument();
+  });
+  it('Os filtro Foods funciona corretamente', async () => {
+    RenderWithRouter(<FavoriteRecipes />);
+    const foodBtn = await screen.findByTestId('filter-by-food-btn');
+    const aquamarine = await screen.findByText(/aquamarine/i);
+    userEvent.click(foodBtn);
+    expect(aquamarine).not.toBeInTheDocument();
+  });
+  it('Desfavoritar uma comida a remove da página', async () => {
+    const localStorageResult = [
+      {
+        id: '178319',
+        type: 'drink',
+        nationality: '',
+        category: 'Cocktail',
+        alcoholicOrNot: 'Alcoholic',
+        name: 'Aquamarine',
+        image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+      },
+    ];
+    RenderWithRouter(<FavoriteRecipes />);
+    const arrabiataFavorite = await screen.findByTestId('0-horizontal-favorite-btn');
+    fireEvent.click(arrabiataFavorite);
+    const localStorageItems = await JSON.parse(localStorage.getItem('favoriteRecipes'));
+    expect(localStorageItems).toEqual(localStorageResult);
   });
 });

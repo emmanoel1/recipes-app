@@ -6,13 +6,13 @@ import shareIcon from '../images/shareIcon.svg';
 
 import '../css/ShareButton.css';
 
-function ShareButton({ id, category }) {
+export function ShareButton({ id, category }) {
   const [copy, setCopy] = useState(false);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(`http://localhost:3000/${category}/${id}`);
-    // eslint-disable-next-line no-alert
     setCopy(!copy);
+    // eslint-disable-next-line no-alert
   };
 
   return (
