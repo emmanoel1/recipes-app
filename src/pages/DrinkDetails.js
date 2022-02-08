@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import ShareButtonn from '../components/ShareButton';
 import RecipePicture from '../components/RecipePicture';
 import RecipeTitle from '../components/RecipeTitle';
-import ShareButton from '../components/ShareButton';
 import FavoriteButton from '../components/FavoriteButton';
 import RecipeCategory from '../components/RecipeCategory';
 import RecipeIngredients from '../components/RecipeIngredients';
@@ -66,7 +66,7 @@ function DrinkDetails() {
           <RecipeTitle recipeTitle={ recipe.strDrink } />
         </div>
         <div className="share-icon-container">
-          <ShareButton category="drinks" id={ recipe.idDrink } />
+          <ShareButtonn category="drinks" id={ recipe.idDrink } />
         </div>
         <div className="favorite-icon-container">
           <FavoriteButton currentRecipe={ recipe } recipeType="drink" />

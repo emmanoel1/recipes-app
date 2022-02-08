@@ -7,7 +7,7 @@ import RecipeCategory from '../components/RecipeCategory';
 import RecipeInstructions from '../components/RecipeInstructions';
 import RecipePicture from '../components/RecipePicture';
 import RecipeTitle from '../components/RecipeTitle';
-import ShareButton from '../components/ShareButton';
+import ShareButtonn from '../components/ShareButton';
 import StepIngredients from '../components/InProgress/StepIngredients';
 import RecipeFinishBtn from '../components/InProgress/RecipeFinishBtn';
 
@@ -61,7 +61,7 @@ function FoodProgress() {
           <RecipeTitle recipeTitle={ recipe.strMeal } />
         </div>
         <div className="share-icon-container">
-          <ShareButton category="foods" id={ recipe.idMeal } />
+          <ShareButtonn category="foods" id={ recipe.idMeal } />
         </div>
         <div className="favorite-icon-container">
           <FavoriteButton currentRecipe={ recipe } recipeType="meal" />

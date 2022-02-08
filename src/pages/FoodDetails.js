@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import RecipePicture from '../components/RecipePicture';
 import RecipeTitle from '../components/RecipeTitle';
-import ShareButton from '../components/ShareButton';
+import ShareButtonn from '../components/ShareButton';
 import FavoriteButton from '../components/FavoriteButton';
 import RecipeCategory from '../components/RecipeCategory';
 import RecipeIngredients from '../components/RecipeIngredients';
@@ -68,7 +68,7 @@ function FoodDetails() {
           <RecipeTitle recipeTitle={ recipe.strMeal } />
         </div>
         <div className="share-icon-container">
-          <ShareButton category="foods" id={ recipe.idMeal } />
+          <ShareButtonn category="foods" id={ recipe.idMeal } />
         </div>
         <div className="favorite-icon-container">
           <FavoriteButton currentRecipe={ recipe } recipeType="meal" />
