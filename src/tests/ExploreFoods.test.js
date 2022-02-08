@@ -57,4 +57,14 @@ describe('Testa a página ExploreFoods', () => {
     expect(exploreByNat).toBeInTheDocument();
     expect(surprise).toBeInTheDocument();
   });
+  it('Os links estão referenciando corretamente', async () => {
+    const { findByTestId } = RenderWithRouter(<ExploreFoods />);
+    const ingredientsLink = (await findByTestId('explore-by-ingredient')).parentNode;
+    const nationalityLink = (await findByTestId('explore-by-nationality')).parentNode;
+    const surpriseLink = (await findByTestId('explore-surprise')).parentNode;
+
+    expect(ingredientsLink).toHaveAttribute('href', '/explore/foods/ingredients');
+    expect(nationalityLink).toHaveAttribute('href', '/explore/foods/nationalities');
+    expect(surpriseLink).toHaveAttribute('href', '/foods/52771');
+  });
 });
