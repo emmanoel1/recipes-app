@@ -5,6 +5,14 @@ import FoodDetails from '../pages/FoodDetails';
 import RenderWithRouter from '../helpers/RenderWithRouter';
 import * as API from '../services';
 
+Object.assign(navigator, {
+  clipboard: {
+    writeText: () => {},
+  },
+});
+
+const clipboardMock = jest.spyOn(navigator.clipboard, 'writeText');
+
 jest.mock('../services');
 const meals = require('../../cypress/mocks/meals');
 const drinks = require('../../cypress/mocks/drinks');
@@ -50,6 +58,14 @@ describe('Testa a página FoodDetails', () => {
     expect(shareBtn).toHaveLength(2);
     expect(shareBtn[0]).toBeInTheDocument();
     expect(shareBtn[1]).toBeInTheDocument();
+  });
+  it('O botão de compartilhar funciona corretamente', async () => {
+    clipboardMock.mockReturnValue('test');
+    RenderWithRouter(<FoodDetails />, defaultPathAndRoute);
+    const shareBtn = await screen.findByTestId('share-btn');
+    userEvent.click(shareBtn);
+    const newButton = await screen.findByText('Link copied!');
+    expect(newButton).toBeInTheDocument();
   });
   it('A página contém uma lista de ingredientes', async () => {
     RenderWithRouter(<FoodDetails />, defaultPathAndRoute);

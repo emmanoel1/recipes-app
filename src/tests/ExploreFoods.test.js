@@ -5,6 +5,7 @@ import RenderWithRouter from '../helpers/RenderWithRouter';
 import * as API from '../services';
 
 jest.mock('../services');
+
 const meals = require('../../cypress/mocks/meals');
 const drinks = require('../../cypress/mocks/drinks');
 const mealCategories = require('../../cypress/mocks/mealCategories');
