@@ -13,7 +13,6 @@ Object.assign(navigator, {
 
 const clipboardMock = jest.spyOn(navigator.clipboard, 'writeText');
 
-jest.mock('../services');
 const meals = require('../../cypress/mocks/meals');
 const drinks = require('../../cypress/mocks/drinks');
 const mealCategories = require('../../cypress/mocks/mealCategories');
@@ -21,6 +20,8 @@ const drinkCategories = require('../../cypress/mocks/drinkCategories');
 const mealIngredients = require('../../cypress/mocks/mealIngredients');
 const drinkIngredients = require('../../cypress/mocks/drinkIngredients');
 const oneMeal = require('../../cypress/mocks/oneMeal');
+
+jest.mock('../services');
 
 describe('Testa a página FoodDetails', () => {
   const defaultPathAndRoute = { path: '/foods/:foodId', route: '/foods/52771' };
